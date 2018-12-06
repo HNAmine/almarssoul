@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>
+      List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+
+  <ion-list *ngFor="let topic of topics">
+
+    <ion-list-header (click)="topic.closed = !topic.closed">
+
+      <ion-icon *ngIf="!topic.closed" name="md-remove" item-start></ion-icon>
+      <ion-icon *ngIf="topic.closed" name="md-add" item-start></ion-icon>
+
+      {{topic.value}}
+    </ion-list-header>
+
+    <ng-container *ngIf="topic.closed">
+
+      <ion-card (click)="goToDetailPage(question)" *ngFor="let question of topic.questions;let last = last" [ngClass]="{'space': last}">
+        <ion-card-content>
+          {{question.content}}
+        </ion-card-content>
+      </ion-card>
+
+    </ng-container>
+
+  </ion-list>
+
+</ion-content>

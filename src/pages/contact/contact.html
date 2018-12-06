@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title text-center>
+      <ion-icon name="call"></ion-icon> Contact us
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <ion-icon name="md-mail"></ion-icon> {{contact.mail}}
+            </ion-col>
+
+            <ion-col col-12>
+                <ion-icon name="call"></ion-icon> {{contact.call}}
+            </ion-col>
+
+            <ion-col col-12>
+                <ion-icon name="md-locate"></ion-icon> {{contact.location}}
+            </ion-col>
+
+            <ion-col col-12>
+                <ion-icon *ngIf="contact.facebook" (click)="onNavigate(contact.facebook)" name="logo-facebook"></ion-icon>
+                <ion-icon *ngIf="contact.twitter" (click)="onNavigate(contact.twitter)" style="float: right" name="logo-twitter"></ion-icon>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</ion-content>

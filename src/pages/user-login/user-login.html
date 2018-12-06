@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar hideBackButton="false">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title text-center>
+      <ion-icon name="md-key"></ion-icon> Sign in
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form #questionForm="ngForm">
+    <ion-list no-lines padding-top>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Email address"
+          [(ngModel)]="credential.email"
+          name="email"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="credential.password"
+          name="password"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block round color="secondary" (click)="signin()">
+      Login
+    </button>
+  </form>
+  <!-- <div padding-top>
+
+        <div style="text-align: center" (click)="signupPage()">
+            Don't Have account,<span style="font-weight: bold;color: white"> Sign up </span>from Here
+        </div>
+
+  </div> -->
+
+  <!-- <img src="./assets/imgs/banners/1.png" class="center" /> -->
+</ion-content>

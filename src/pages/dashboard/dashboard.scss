@@ -1,0 +1,27 @@
+page-dashboard {
+  ion-slides {
+    max-height: 23%;
+  }
+}
+
+.bold {
+  color: black !important;
+}
+
+.segment-activated {
+  color: white !important;
+  border: 1px solid black !important;
+  font-weight: bold !important;
+}
+
+.image_block {
+  width: 175px;
+  height: 175px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.image_block a img {
+position: absolute;
+bottom: 0;
+}

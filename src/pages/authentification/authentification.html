@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title text-center>
+      <ion-icon name="md-key"></ion-icon> Welcome
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div>
+        <img class="center" style="height: 150px" src="./assets/imgs/delivery.png">
+    </div>
+
+  <h1 style="text-align: center;color: brown;font-weight: bold">AL MARSSOUL</h1>
+
+  <div padding-top>
+
+      <button (click)="loginGoogle()" ion-button block style="background-color: #dd4b38">
+          <div class="left">
+              <img width="40px" alt="Google &quot;G&quot; Logo" src="./assets/imgs/google-plus.svg"/>
+          </div>
+          <span style="margin-left: 10px">Sign in with google</span>
+      </button>
+
+      <div style="text-align: center">
+          <button ion-button style="background-color: burlywood;">
+              <ion-icon style="margin-right: 10px;" name="create"></ion-icon> Sign up
+          </button>
+
+          <button ion-button style="background-color: burlywood;" (click)="login()">
+              <ion-icon style="margin-right: 10px;" name="md-log-in"></ion-icon> Login
+          </button>
+      </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-menu [content]="content" type="overlay" persistent="true">
+
+
+  <ion-header>
+
+          <ion-toolbar color="header">
+            <div class="profile-image">
+              <img class="center" style="height: 150px" src="./assets/imgs/delivery.png">
+            </div>
+          </ion-toolbar>
+
+          <ion-toolbar>
+            <ion-item no-lines>
+              <ion-avatar item-left> <h2>A</h2> </ion-avatar>
+              <h2>Amine HANANE</h2>
+              <p>Guest User</p>
+            </ion-item>
+          </ion-toolbar>
+
+  </ion-header>
+
+  <ion-content>
+    <ion-list no-lines>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p?.icon}}"></ion-icon> {{ p.title }}
+      </button>
+
+      <button ion-item (click)="logout()">
+        <ion-icon name="md-log-out"></ion-icon> Logout
+      </button>
+    </ion-list>
+
+    <br />
+    <br />
+
+    <ion-list style="text-align: center" *ngIf="icons">
+        <img *ngIf="icons.principal" width="80%" [src]="icons.principal">
+        <img *ngIf="icons.event" width="80%" [src]="icons.event">
+      </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
