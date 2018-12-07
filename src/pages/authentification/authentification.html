@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar hideBackButton="false">
     <ion-title text-center>
       <ion-icon name="md-key"></ion-icon> AL MARSSOUL
+      <p style="font-size: 12px;color: black;font-weight: bold;">A plus tôt au lieux actuel</p>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -24,11 +25,11 @@
       </button>
 
       <div style="text-align: center">
-          <button ion-button style="background-color: burlywood;">
+          <button ion-button (click)="signup()">
               <ion-icon style="margin-right: 10px;" name="create"></ion-icon> Sign up
           </button>
 
-          <button ion-button style="background-color: burlywood;" (click)="login()">
+          <button ion-button (click)="login()">
               <ion-icon style="margin-right: 10px;" name="md-log-in"></ion-icon> Login
           </button>
       </div>

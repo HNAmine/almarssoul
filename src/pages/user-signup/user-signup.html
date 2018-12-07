@@ -1,87 +1,65 @@
 <ion-header>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar hideBackButton="false">
     <ion-title text-center>
-      <ion-icon name="md-log-out"></ion-icon> Sign up
+      <ion-icon name="create"></ion-icon> Sign up
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-right color="light" (click)="loginPage()">
-        Sign in<ion-icon name="ios-arrow-forward"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <img src="./assets/imgs/banners/2.jpg" class="center" />
-  <form #questionForm="ngForm">
-    <ion-list no-lines padding-top>
-      <ion-item>
-        <ion-input
-          type="text"
-          placeholder="Full name"
-          [(ngModel)]="principal.fullName"
-          name="fullName"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          type="text"
-          placeholder="Email address"
-          [(ngModel)]="principal.email"
-          name="email"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="principal.password"
-          name="password"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          type="password"
-          placeholder="Retype Password"
-          [(ngModel)]="principal.repassword"
-          name="repassword"
-          required
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input
-          type="text"
-          placeholder="Registration code"
-          [(ngModel)]="principal.registrationCode"
-          name="registrationCode"
-          required
-        ></ion-input>
-      </ion-item>
-    </ion-list>
-    <button
-      ion-button
-      block
-      round
-      (click)="register()"
-      color="secondary"
-      [disabled]="
-        !questionForm.form.valid || principal.repassword !== principal.password
-      "
-    >
-      Signup
-    </button>
-  </form>
-  <div padding-top>
-
-      <div style="text-align: center" (click)="loginPage()">
-          Have account, <span style="font-weight: bold;color: white">Sign in</span> from Here
-      </div>
-
+  <div>
+    <img class="center" style="height: 150px" src="./assets/imgs/delivery.png"/>
   </div>
 
-  <img src="./assets/imgs/banners/1.png" class="center" />
+  <form #questionForm="ngForm">
+      <ion-list no-lines padding-top>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Phone <span style="color: brown">(*)</span></ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="principal.phone"
+                name="phone"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Full name <span style="color: brown">(*)</span></ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="principal.fullname"
+                name="fullname"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Email</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="principal.email"
+                name="email"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating style="color: black;font-weight: bold">Password <span style="color: brown">(*)</span></ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="principal.password"
+              name="password"
+              required></ion-input>
+          </ion-item>
+
+      </ion-list>
+
+      <button ion-button block round color="secondary">
+        Register
+      </button>
+
+    </form>
+
 </ion-content>

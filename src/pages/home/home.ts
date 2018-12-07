@@ -1,11 +1,7 @@
-import { UserLogin } from './../user-login/user-login';
-import { SponsorPage } from "./../sponsor/sponsor";
-import { ProgramPage } from "./../program/program";
-import { ContactPage } from "./../contact/contact";
-import { WelcomePage } from "./../welcome/welcome";
-import { CommitteePage } from "./../committee/committee";
-import { SpeakerPage } from "./../speaker/speaker";
-import { AddQuestions } from "./../add-questions/add-questions";
+import { ProfilPage } from './../profil/profil';
+import { BasketPage } from './../basket/basket';
+import { OrdersPage } from './../orders/orders';
+import { Authentification } from './../authentification/authentification';
 
 import { Component, ViewChild } from "@angular/core";
 import { Platform, MenuController, Nav, NavController } from "ionic-angular";
@@ -48,18 +44,13 @@ export class Home {
     // set our app's pages
     this.pages = [
       { title: "Accueil", icon: "home", component: Dashboard },
-      { title: "Produits", icon: "md-list", component: AddQuestions },
+      { title: "Mes commandes", icon: "md-list", component: OrdersPage },
       {
-        title: "Mes paniers",
+        title: "Panier",
         icon: "ios-basket",
-        component: WelcomePage
-      }
-      // ,
-      // { title: "Program", icon: "list", component: ProgramPage },
-      // { title: "Speakers", icon: "ios-people", component: SpeakerPage },
-      // { title: "Committees", icon: "md-people", component: CommitteePage },
-      // { title: "Sponsors", icon: "md-people", component: SponsorPage },
-      // { title: "Contact us", icon: "call", component: ContactPage }
+        component: BasketPage
+      },
+      { title: "Profile", icon: "md-person", component: ProfilPage }
     ];
 
     this.questionService.getCurrentIcons().subscribe(icons => {
@@ -84,7 +75,6 @@ export class Home {
   }
 
   logout(){
-    this.questionService.email = null;
-    this.navCtrl.setRoot(UserLogin);
+    this.navCtrl.setRoot(Authentification);
   }
 }

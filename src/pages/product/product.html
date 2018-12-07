@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar hideBackButton="false">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title text-center (click)="goToBasketPage()">
+      Products
+    </ion-title>
+    <ion-buttons end (click)="goToBasketPage()">
+        <button ion-button end style="color: black;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+    <ion-card>
+        <img [src]="category.avatar"/>
+        <div class="card-title">{{category.name}}</div>
+        <div class="card-subtitle">{{category.description}}</div>
+    </ion-card>
+
+    <ion-list>
+
+      <ion-item *ngFor="let product of category.products">
+            <!-- <ion-thumbnail item-end>
+              <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678092-sign-add-512.png">
+            </ion-thumbnail> -->
+            <h2 style="font-weight: bold">{{product.name}}</h2>
+            <p>{{product.price}} um/Kg</p>
+            <button (click)="openProductModal()" ion-button clear item-end><ion-icon style="color: green;font-size: 30px;" name="md-add-circle"></ion-icon></button>
+      </ion-item>
+
+  </ion-list>
+
+</ion-content>

@@ -2,6 +2,7 @@ import { UserLogin } from './../user-login/user-login';
 import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController, LoadingController } from "ionic-angular";
 import { GooglePlus } from '@ionic-native/google-plus';
+import { UserSignup } from '../user-signup/user-signup';
 
 @Component({
   selector: "page-authentification",
@@ -33,5 +34,8 @@ export class Authentification {
   }
   login() {
     this.navCtrl.push(UserLogin);
+  }
+  signup(){
+    this.navCtrl.push(UserSignup);
   }
 }

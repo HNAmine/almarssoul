@@ -1,87 +1,29 @@
 <ion-header>
   <ion-navbar no-border-bottom hideBackButton="true">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-
     <ion-title> AL MARSSOUL </ion-title>
+    <p style="font-size: 12px;color: black;font-weight: bold;">A plus tôt au lieux actuel</p>
+    <ion-buttons end (click)="goToBasketPage()">
+        <button ion-button end style="color: black;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
-
 <ion-content class="card-background-page">
 
-  <ion-fab top right edge>
-    <button ion-fab mini color="light"><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab>
-        <ion-icon name="md-log-in"></ion-icon>
-      </button>
-    </ion-fab-list>
-  </ion-fab>
+    <ion-fab top right edge>
+      <button ion-fab mini color="light"><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list>
+        <button ion-fab (click)="logout()">
+          <ion-icon name="md-log-in"></ion-icon>
+        </button>
+      </ion-fab-list>
+    </ion-fab>
 
-  <ion-card>
-      <img src="http://i.f1g.fr/media/ext/1900x1900/madame.lefigaro.fr/sites/default/files/img/2016/08/consommer-trop-de-viande-favoriserait-la-depression.jpg"/>
-      <div class="card-title">Viandes</div>
-      <div class="card-subtitle">41 Listings</div>
+    <ion-card *ngFor="let category of categories" (click)="goToCategoryDetails(category)">
+      <img [src]="category.avatar"/>
+      <div class="card-title">{{category.name}}</div>
+      <div class="card-subtitle">{{category.description}}</div>
     </ion-card>
-
-    <ion-card>
-      <img src="https://i-sam.unimedias.fr/2017/11/22/legumes.jpg?auto=format%2Ccompress&crop=faces&cs=tinysrgb&fit=crop&h=388&w=690"/>
-      <div class="card-title">Légumes</div>
-      <div class="card-subtitle">64 Listings</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="https://www.fermedubio.com/uploaded/1/35/big/altimage380.jpg"/>
-      <div class="card-title">Poulets</div>
-      <div class="card-subtitle">72 Listings</div>
-    </ion-card>
-
-    <ion-card>
-      <img src="http://djolo.net/wp-content/uploads/2014/12/Ebadjea.jpg"/>
-      <div class="card-title">Poissons</div>
-      <div class="card-subtitle">28 Listings</div>
-    </ion-card>
-
-  <!-- sliders -->
-  <!-- <ion-slides
-    *ngIf="dash.slides && dash.slides.length > 0"
-    autoplay="2000"
-    loop="true"
-    speed="900">
-    <ion-slide *ngFor="let slide of dash.slides">
-      <img [src]="slide" />
-    </ion-slide>
-  </ion-slides> -->
-
-  <!-- <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="segment">
-      <ion-segment-button value="program" class="bold">
-        {{ dash.subject.title }}
-      </ion-segment-button>
-      <ion-segment-button (click)="askQuestion()" class="bold">
-        Ask a question
-      </ion-segment-button>
-      <ion-segment-button value="news" class="bold">
-        News
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar> -->
-
-  <!-- <div [ngSwitch]="segment">
-    <ng-container *ngSwitchCase="'program'">
-      <div style="padding: 10px">{{ dash.subject.descption }}</div>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="'news'">
-        <ion-list>
-            <span *ngFor="let new of dash.news">
-              <h4>{{ new.createdAt }}</h4>
-              <h6>{{ new.content }}</h6>
-              <hr style="background-color: black">
-            </span>
-          </ion-list>
-    </ng-container>
-  </div> -->
 
 </ion-content>

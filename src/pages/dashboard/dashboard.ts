@@ -1,7 +1,11 @@
-import { AddQuestions } from "./../add-questions/add-questions";
+import { BasketPage } from './../basket/basket';
+import { Authentification } from './../authentification/authentification';
+import { ProductPage } from './../product/product';
 import { Component } from "@angular/core";
-import { NavController, NavParams, LoadingController } from "ionic-angular";
+import { LoadingController, NavController, NavParams } from "ionic-angular";
+
 import { QuestionService } from "../../providers/question.service";
+import { Category } from "./../../model/category.model";
 
 /**
  * Generated class for the Dashboard page.
@@ -14,20 +18,7 @@ import { QuestionService } from "../../providers/question.service";
   templateUrl: "dashboard.html"
 })
 export class Dashboard {
-  dash: {
-    slides: string[];
-    subject: { title?: string; descption?: string };
-    news?: { createdAt: string, content: string }[];
-    principal?: string;
-    event?: string;
-  } = {
-    slides: [],
-    subject: {
-    },
-    news: []
-  };
-
-  segment: string = "program";
+  categories: Category[] = [];
   loader = this.loadingCtrl.create({
     content: "Please wait..."
   });
@@ -37,28 +28,17 @@ export class Dashboard {
     public loadingCtrl: LoadingController,
     public questionService: QuestionService
   ) {
-    this.presentLoading();
-    this.questionService.getConfig().subscribe(
-      dash => {
-        this.dash = dash;
-        this.questionService.sendCurrentIcons({
-          principal: dash.principal,
-          event: dash.event
-        });
-        this.dismissLoading();
-      },
-      err => {
-        this.dismissLoading();
-      }
+    this.categories.push(
+      new Category(1, "Viandes", "67 Listings", "http://i.f1g.fr/media/ext/1900x1900/madame.lefigaro.fr/sites/default/files/img/2016/08/consommer-trop-de-viande-favoriserait-la-depression.jpg"),
+      new Category(2, "Légumes", "41 Listings", "https://i-sam.unimedias.fr/2017/11/22/legumes.jpg?auto=format%2Ccompress&crop=faces&cs=tinysrgb&fit=crop&h=388&w=690"),
+      new Category(3, "Poulets", "111 Listings", "https://www.fermedubio.com/uploaded/1/35/big/altimage380.jpg"),
+      new Category(4, "Poissons", "29 Listings" , "http://djolo.net/wp-content/uploads/2014/12/Ebadjea.jpg"),
+      new Category(4, "Menage", "120 Listings" , "http://www.natura-sciences.com/wordpress/wp-content/uploads/2013/11/produits-d-entretien.jpg")
     );
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad Dashboard");
-  }
-
-  onNavigate(url: string) {
-    window.open(url, "_blank");
   }
 
   presentLoading() {
@@ -69,7 +49,17 @@ export class Dashboard {
     this.loader.dismiss();
   }
 
-  askQuestion() {
-    this.navCtrl.push(AddQuestions);
+  goToCategoryDetails(categorie: Category){
+    this.navCtrl.push(ProductPage, {
+      data: categorie
+    });
+  }
+
+  logout(){
+    this.navCtrl.setRoot(Authentification);
+  }
+
+  goToBasketPage(){
+    this.navCtrl.push(BasketPage);
   }
 }

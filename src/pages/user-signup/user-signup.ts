@@ -1,4 +1,3 @@
-import { QuestionService } from "./../../providers/question.service";
 import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController } from "ionic-angular";
 
@@ -15,7 +14,6 @@ export class UserSignup {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private questionService: QuestionService,
     public toastCtrl: ToastController
   ) {}
 
@@ -31,24 +29,6 @@ export class UserSignup {
   }
 
   register() {
-    this.questionService.register(this.principal).subscribe(
-      res => {
-        const toast = this.toastCtrl.create({
-          message: "Account was added successfully",
-          duration: 3000
-        });
-        this.principal = {};
-        toast.present();
-      },
-      err => {
-        if (err.status == 300) {
-          const toast = this.toastCtrl.create({
-            message: "Email aleray exist",
-            duration: 3000
-          });
-          toast.present();
-        }
-      }
-    );
+
   }
 }

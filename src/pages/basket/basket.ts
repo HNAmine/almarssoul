@@ -1,4 +1,3 @@
-import { QuestionService } from './../../providers/question.service';
 import { Component } from "@angular/core";
 import {
   NavController,
@@ -15,32 +14,26 @@ import {
  * on Ionic pages and navigation.
  */
 @Component({
-  selector: "detail-question",
-  templateUrl: "detail-question.html"
+  selector: "page-basket",
+  templateUrl: "basket.html"
 })
-export class DetailQuestion {
+export class BasketPage {
 
   loader = this.loadingCtrl.create({
     content: "Please wait..."
   });
-  question:any = {};
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
-    public questionService: QuestionService,
-    public loadingCtrl: LoadingController,
-    public nacParams: NavParams
+    public loadingCtrl: LoadingController
   ) {
-
   }
 
   ionViewDidLoad() {
-    this.presentLoading();
-    this.dismissLoading();
-
-    this.question = this.nacParams.get('question');
+    console.log("ionViewDidLoad OrdersPage");
   }
 
   presentLoading() {
@@ -50,4 +43,5 @@ export class DetailQuestion {
   dismissLoading() {
     this.loader.dismiss();
   }
+
 }
