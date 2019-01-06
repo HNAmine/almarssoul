@@ -13,16 +13,18 @@
     <img class="center" style="height: 150px" src="./assets/imgs/delivery.png">
   </div>
 
-  <form #questionForm="ngForm">
+  <form #form="ngForm">
     <ion-list no-lines padding-top>
       <ion-item>
         <ion-label floating style="color: black;font-weight: bold">Username</ion-label>
         <ion-input
-          type="text"
-          [(ngModel)]="credential.email"
-          name="email"
-          required
-        ></ion-input>
+                type="text"
+                [(ngModel)]="credential.login"
+                name="username"
+                minlength="4"
+                maxlength="255"
+                required>
+        </ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating style="color: black;font-weight: bold">Password</ion-label>
@@ -30,11 +32,13 @@
           type="password"
           [(ngModel)]="credential.password"
           name="password"
+          minlength="4"
+          maxlength="50"
           required
         ></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button block round color="secondary" (click)="signin()">
+    <button ion-button block round color="secondary" (click)="signin()" [disabled]="!form.valid">
       Login
     </button>
   </form>

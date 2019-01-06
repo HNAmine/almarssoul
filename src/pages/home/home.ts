@@ -9,7 +9,10 @@ import { Platform, MenuController, Nav, NavController } from "ionic-angular";
 import { Dashboard } from "../dashboard/dashboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
-import { QuestionService } from "../../providers/question.service";
+import { Storage } from '@ionic/storage';
+import { tokenIndex } from '../../app/config';
+import { AuthentificationService } from '../../providers/authentification.service';
+import { User } from '../../model/authentification.model';
 
 /**
  * Generated class for the Dashboard page.
@@ -24,23 +27,24 @@ import { QuestionService } from "../../providers/question.service";
 export class Home {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
   rootPage = Dashboard;
+
   pages: Array<{ title: string; icon: string; component: any }>;
-  icons: {
-    principal?: string;
-    event?: string;
-  } = {};
+
+  currentUser: User = null;
+
+  trigram = null;
+
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public questionService: QuestionService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private storage: Storage,
+    private authentificationService: AuthentificationService
   ) {
     this.initializeApp();
-
     // set our app's pages
     this.pages = [
       { title: "Accueil", icon: "home", component: Dashboard },
@@ -52,10 +56,25 @@ export class Home {
       },
       { title: "Profile", icon: "md-person", component: ProfilPage }
     ];
+  }
 
-    this.questionService.getCurrentIcons().subscribe(icons => {
-      this.icons = icons;
+  ionViewDidLoad() {
+    this.storage.get(tokenIndex).then((token) => {
+      this.currentUser = this.authentificationService.getCurrentUser(token);
+      this.getTrigram(this.currentUser.firstName, this.currentUser.lastName);
     });
+
+    this.authentificationService.activeUser.subscribe((_user)=>{
+      this.currentUser = _user;
+      this.getTrigram(this.currentUser.firstName, this.currentUser.lastName);
+    })
+  }
+
+  getTrigram(firstName, lastName) {
+    this.trigram = firstName ? firstName.charAt(0) : null;
+    if(lastName){
+      this.trigram += lastName.charAt(0);
+    }
   }
 
   initializeApp() {
@@ -71,10 +90,13 @@ export class Home {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+    // this.nav.setRoot(page.component);
+    this.nav.insert(0,page.component);
+    this.nav.popToRoot();
   }
 
   logout(){
     this.navCtrl.setRoot(Authentification);
   }
+
 }

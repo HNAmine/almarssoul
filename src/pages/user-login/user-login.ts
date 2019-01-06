@@ -1,24 +1,29 @@
 import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController, LoadingController } from "ionic-angular";
 import { UserSignup } from "../user-signup/user-signup";
-import { QuestionService } from "./../../providers/question.service";
 import { Home } from "./../home/home";
+import { AuthentificationService } from "../../providers/authentification.service";
+import { Credentials } from "../../model/authentification.model";
+import { Value } from "../../model/shared.model";
+import { Storage } from '@ionic/storage';
+import { tokenIndex } from "../../app/config";
+import { CustomError } from "../../app/errors.handler";
 
 @Component({
   selector: "page-user-login",
   templateUrl: "user-login.html"
 })
 export class UserLogin {
-  credential: any = {};
-  loader = this.loadingCtrl.create({
-    content: "Please wait..."
-  });
+
+  credential: Credentials = {login:null ,password:null};
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private questionService: QuestionService,
     public toastCtrl: ToastController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private authentificationService: AuthentificationService,
+    private storage: Storage
   ) {}
 
   ionViewDidLoad() {
@@ -28,47 +33,25 @@ export class UserLogin {
   homePage() {
     this.navCtrl.push(Home);
   }
+
   signupPage() {
     this.navCtrl.push(UserSignup);
   }
 
   signin() {
-    this.presentLoading();
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
 
-    this.homePage();
-
-    this.dismissLoading();
-    // this.questionService.login(this.credential).subscribe(
-    //   res => {
-    //     const toast = this.toastCtrl.create({
-    //       message: "Welcome",
-    //       duration: 3000
-    //     });
-    //     toast.present();
-    //     this.questionService.email = this.credential.email;
-    //     this.homePage();
-    //     this.dismissLoading();
-    //   },
-    //   err => {
-    //     if (err.status == 300) {
-    //       const toast = this.toastCtrl.create({
-    //         message: "Login or Password not valid",
-    //         duration: 3000
-    //       });
-    //       toast.present();
-    //     }
-
-    //     this.dismissLoading();
-    //   }
-    // );
-  }
-
-
-  presentLoading() {
-    this.loader.present();
-  }
-
-  dismissLoading() {
-    this.loader.dismiss();
+    loader.present();
+      this.authentificationService.signin(this.credential).subscribe((token:Value<string>) => {
+         // set a key/value
+        this.storage.set(tokenIndex, token.value);
+        loader.dismiss();
+        this.homePage();
+      }, (err: { error: CustomError } )=> {
+        loader.dismiss();
+        throw err;
+      });
   }
 }

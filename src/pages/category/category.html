@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar hideBackButton="false">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title text-center (click)="goToBasketPage()">
+        {{store.label}}
+    </ion-title>
+    <ion-buttons end (click)="goToBasketPage()">
+        <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+    <ion-card>
+        <img [src]="store.avatarUri"/>
+        <div class="card-title" style="color: black !important">{{store.label}}</div>
+        <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
+    </ion-card>
+
+    <ion-grid>
+        <ion-row justify-content-center> 
+            <ion-col *ngFor="let category of store.categories" class="category-label" (click)="goToCategoryDetails(category)" col-4>{{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i></ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list>
+
+      <!-- <ion-item *ngFor="let product of category.products">
+            <h2 style="font-weight: bold">{{product.name}}</h2>
+            <p>{{product.price}} um/Kg</p>
+            <button (click)="openProductModal()" ion-button clear item-end><ion-icon style="color: green;font-size: 30px;" name="md-add-circle"></ion-icon></button>
+      </ion-item> -->
+
+  </ion-list>
+
+</ion-content>

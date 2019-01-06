@@ -4,26 +4,33 @@
     <ion-title> AL MARSSOUL </ion-title>
     <p style="font-size: 12px;color: black;font-weight: bold;">A plus tôt au lieux actuel</p>
     <ion-buttons end (click)="goToBasketPage()">
-        <button ion-button end style="color: black;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+        <button ion-button end style="color: black;float: right;color: white"><ion-icon name="ios-basket"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar
+        [(ngModel)]="pageable.search"
+        showCancelButton=true
+        (search)="onInput($event)"
+        cancelButtonText = "Cancel"
+        (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="card-background-page">
 
-    <ion-fab top right edge>
-      <button ion-fab mini color="light"><ion-icon name="add"></ion-icon></button>
-      <ion-fab-list>
-        <button ion-fab (click)="logout()">
-          <ion-icon name="md-log-in"></ion-icon>
-        </button>
-      </ion-fab-list>
-    </ion-fab>
-
-    <ion-card *ngFor="let category of categories" (click)="goToCategoryDetails(category)">
-      <img [src]="category.avatar"/>
-      <div class="card-title">{{category.name}}</div>
-      <div class="card-subtitle">{{category.description}}</div>
+    <h4 style="text-align: center" *ngIf="!loading && stores.length === 0"><ion-icon name="ios-warning-outline"></ion-icon> No result found !</h4>
+    <ion-card *ngFor="let store of stores" (click)="goToStoreDetails(store)">
+      <!-- [ngClass]="{'disabled':!store.enable}" -->
+      <img [src]="store.avatarUri"/>
+      <div class="card-title" style="color: black !important">{{store.label}}</div>
+      <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
+      <div class="card-badge" *ngIf="store.categories && store.categories.length > 0"><span class="w3-badge w3-green">{{getCategoriesLabel(store.categories)}}</span></div>
     </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

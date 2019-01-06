@@ -87,4 +87,5 @@
         <variable name="REVERSED_CLIENT_ID" value="774008111346-kb5mtn8m0f1c5bgautt7cd0ngm06ojh8.apps.googleusercontent.com" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^2.6.0" />
 </widget>

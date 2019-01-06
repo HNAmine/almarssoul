@@ -3,6 +3,8 @@ import { Component } from "@angular/core";
 import { NavController, NavParams, ToastController, LoadingController } from "ionic-angular";
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UserSignup } from '../user-signup/user-signup';
+import { tokenIndex } from '../../app/config';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: "page-authentification",
@@ -16,8 +18,11 @@ export class Authentification {
     public navParams: NavParams,
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    private googlePlus: GooglePlus
-  ) {}
+    private googlePlus: GooglePlus,
+    private storage: Storage
+  ) {
+    this.storage.remove(tokenIndex);
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad UserLogin");
@@ -32,10 +37,13 @@ export class Authentification {
 
           console.error(err)});
   }
+
   login() {
     this.navCtrl.push(UserLogin);
   }
+
   signup(){
     this.navCtrl.push(UserSignup);
   }
+
 }

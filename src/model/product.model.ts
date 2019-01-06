@@ -1,22 +1,41 @@
+import { BasketState } from "./basket.model";
+
 export class Product {
-  id: number;
-  name: string;
-  price: number;
+  id?: number;
+  label?: string;
+  cost?: number;
   description?: string;
-  avatar?:string;
-  quantity?:number;
-  outStock?:boolean;
-  constructor(
-    id: number,
-    name: string,
-    price: number,
-    description?: string,
-    avatar?:string
-  ) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.description = description;
-    this.avatar = avatar;
-  }
+  createdAt?:Date;
+  expiredAt?:Date;
+  canbeExpired?:boolean;
+  enable?:boolean;
+}
+
+export class Assignment {
+  quantity: number;
+  totalCost: number;
+  product: Product;
+}
+
+export class AssignmentGlobal{
+  assignments?: Assignment[];
+  totalCost?: number;
+  createdAt?: Date;
+	state?: BasketState;
+	ownerRate?: number;
+	ownerComment?: string;
+	deliveryRate?: number;
+	deliveryComment?: string;
+}
+
+export enum Action {
+  ADD = 'ADD', UPDATE= 'UPDATE', DELETE= 'DELETE', SUBMIT= 'SUBMIT'
+}
+
+export class AssignmentPayload {
+  idProduct?: number;;
+	quantity?: number;
+	action?: Action;
+  submit?: boolean;
+  address?:string;
 }

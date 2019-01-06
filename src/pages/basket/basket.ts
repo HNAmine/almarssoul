@@ -19,10 +19,6 @@ import {
 })
 export class BasketPage {
 
-  loader = this.loadingCtrl.create({
-    content: "Please wait..."
-  });
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,14 +30,6 @@ export class BasketPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad OrdersPage");
-  }
-
-  presentLoading() {
-    this.loader.present();
-  }
-
-  dismissLoading() {
-    this.loader.dismiss();
   }
 
 }

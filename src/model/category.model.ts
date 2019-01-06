@@ -2,19 +2,19 @@ import { Product } from "./product.model";
 
 export class Category {
   id: number;
-  name: string;
+  label: string;
   description?: string;
-  avatar?:string;
+  avatarUri?:string;
   products:Product[];
   constructor(
     id: number,
-    name: string,
+    label: string,
     description?: string,
-    avatar?:string
+    avatarUri?:string
   ) {
     this.id = id;
-    this.name = name;
+    this.label = label;
     this.description = description;
-    this.avatar = avatar;
+    this.avatarUri = avatarUri;
   }
 }

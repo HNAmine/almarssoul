@@ -2,33 +2,58 @@
   <ion-navbar hideBackButton="false">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center (click)="goToBasketPage()">
-      Products
+            {{category?.label}}
     </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
-        <button ion-button end style="color: black;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+        <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+        <ion-searchbar
+            [(ngModel)]="pageable.search"
+            showCancelButton=true
+            (search)="onInput($event)"
+            (ionCancel)="onCancel($event)">
+        </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="card-background-page">
 
-    <ion-card>
-        <img [src]="category.avatar"/>
-        <div class="card-title">{{category.name}}</div>
-        <div class="card-subtitle">{{category.description}}</div>
-    </ion-card>
-
+    <h1 style="margin: 10px"><ion-icon name="md-arrow-dropright"></ion-icon> {{store?.label}}</h1>
+    
     <ion-list>
 
-      <ion-item *ngFor="let product of category.products">
-            <!-- <ion-thumbnail item-end>
-              <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678092-sign-add-512.png">
-            </ion-thumbnail> -->
-            <h2 style="font-weight: bold">{{product.name}}</h2>
-            <p>{{product.price}} um/Kg</p>
-            <button (click)="openProductModal()" ion-button clear item-end><ion-icon style="color: green;font-size: 30px;" name="md-add-circle"></ion-icon></button>
-      </ion-item>
+        <ion-item *ngFor="let product of products">
 
-  </ion-list>
+
+            <h2 style="font-weight: bold">
+                <img style="width: 20% !important; height: 20% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
+                {{product.label}}
+                <span style="font-size: 10px" *ngIf="product.description"><i>({{product.description}})</i></span>
+            </h2>
+
+            <p style="font-weight: bold;color: black">{{product.cost}} um/Kg</p>
+            <button (click)="openProductModal(product)" ion-button clear item-end><ion-icon style="color: green;font-size: 30px;" name="md-add-circle"></ion-icon></button>
+        
+        </ion-item>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-list>
+
+    <!-- <ion-card>
+        <img [src]="store.avatarUri"/>
+        <div class="card-title" style="color: black !important">{{store.label}}</div>
+        <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
+    </ion-card>
+
+    <ion-grid>
+        <ion-row justify-content-center> 
+            <ion-col *ngFor="let category of store.categories" class="category-label" col-4>{{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i></ion-col>
+        </ion-row>
+    </ion-grid>
+
+ -->
 
 </ion-content>

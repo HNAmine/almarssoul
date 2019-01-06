@@ -1,92 +1,99 @@
 import { BasketPage } from './../basket/basket';
-import { Category } from "./../../model/category.model";
 import { Component } from "@angular/core";
-import { NavController, NavParams, LoadingController, ModalController, ViewController } from "ionic-angular";
-import { QuestionService } from "../../providers/question.service";
-import { Product } from "../../model/product.model";
+import { NavController, NavParams, LoadingController, ModalController } from "ionic-angular";
+import { Product, Action } from "../../model/product.model";
+import { Store } from '../../model/store.model';
+import { Category } from '../../model/category.model';
+import { Storage } from '@ionic/storage';
+import { tokenIndex } from '../../app/config';
+import { ProductService } from '../../providers/product.service';
+import { ProductModal } from './product-modal';
 
 @Component({
   selector: "product",
   templateUrl: "product.html"
 })
 export class ProductPage {
+
+  store: Store = null;
+
   category: Category = null;
+
+  products:Product[] = [];
 
   loader = this.loadingCtrl.create({
     content: "Please wait..."
   });
 
+  token = null;
+
+  pageable = {search: '', page: 0, size: 10, sort: ''};
+
+  totalPages: number = 0;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public questionService: QuestionService,
-    public modalCtrl: ModalController
+    private storage: Storage,
+    public modalCtrl: ModalController,
+    private productService: ProductService
   ) {
-    this.category = navParams.get("data");
-    this.loadProductsOfCategory(this.category.id);
+    this.store = navParams.get("store");
+    this.category = navParams.get("category");
   }
 
-  onNavigate(url: string) {
-    window.open(url, "_blank");
+  ionViewDidLoad() {
+    this.storage.get(tokenIndex).then((token) => {
+      this.token = token;
+      this.loadProductsOfCategory();
+    });
   }
 
-  presentLoading() {
-    this.loader.present();
+  loadProductsOfCategory(){
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+    this.productService.getProductsByCategory(this.category.id, this.pageable , this.token).subscribe(payload => {
+      this.products.push(...payload.content);
+      loader.dismiss();
+      this.totalPages = payload.totalPages;
+    }, ()=> {
+      loader.dismiss();
+    });
   }
 
-  dismissLoading() {
-    this.loader.dismiss();
+  doInfinite(infiniteScroll){
+    if(this.totalPages == this.pageable.page) {
+      infiniteScroll.enable(false);
+    } else {
+      infiniteScroll.enable(true);
+      this.pageable.page++;
+      this.loadProductsOfCategory();
+      infiniteScroll.complete();
+    }
   }
 
-  loadProductsOfCategory(id: number) {
-    this.category.products = [
-      new Product(1, "Viande boeuf", 1200),
-      new Product(1, "Viande mouton", 800),
-      new Product(1, "Viande chefvre", 1400)
-    ];
+  onInput($event){
+    this.pageable.page =0;
+    this.products = [];
+    this.loadProductsOfCategory();
+  }
+
+  onCancel($event){
+    this.pageable.page =0;
+    this.pageable.search = "";
+    this.products = [];
+    this.loadProductsOfCategory();
   }
 
   goToBasketPage(){
     this.navCtrl.push(BasketPage);
   }
 
-  openProductModal(){
-    let profileModal = this.modalCtrl.create(ProductModal, { userId: 8675309 });
+  openProductModal(product: Product){
+    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.ADD, product, showSubmit: true });
     profileModal.present()
   }
-}
-
-@Component({
-  selector: 'product-modal',
-  template: `
-  <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <button ion-button style="font-size: 30px;color:white;" clear item-end>
-        <ion-icon name="md-add-circle" style="margin-right:10px"></ion-icon> au panier
-      </button>
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-
-</ion-content>
-  `
-})
-export class ProductModal {
-
- constructor(params: NavParams, public viewCtrl: ViewController) {
-   console.log('UserId', params.get('userId'));
- }
-
- dismiss() {
-  this.viewCtrl.dismiss();
-}
 }

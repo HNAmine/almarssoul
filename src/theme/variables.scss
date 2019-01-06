@@ -24,11 +24,12 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #F98866,
-  secondary:  #FB6542,
+  primary:    #00abec,
+  secondary:  #0099d3,
   danger:     #ff0000,
   light:      #fff,
-  dark:       #000
+  dark:       #000,
+  success: green
 );
 
 $size_extrasmall:1.0rem;
@@ -102,3 +103,18 @@ $menu_avatar_text_color:color($colors, light);
 
 @import "roboto";
 @import "noto-sans";
+*{
+  font-family: 'Inconsolata', monospace;
+}
+.required{
+  color: brown;
+  font-size: 12px
+}
+
+.w3-badge,.w3-tag{background-color:#000;color:#fff;display:inline-block;padding:5px;text-align:center}.w3-badge{border-radius:10px}
+.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
+
+
+.disabled {
+  opacity:0.5;
+}

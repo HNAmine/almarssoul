@@ -1,0 +1,125 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <button *ngIf="assignmentPayload.action == 'ADD'" ion-button style="font-size: 20px;color:white;" clear item-end>
+            <ion-icon name="md-add-circle" style="margin-right:10px"></ion-icon> au panier
+        </button>
+        <button *ngIf="assignmentPayload.action == 'UPDATE'" ion-button style="font-size: 20px;color:white;" clear item-end>
+            <ion-icon name="construct" style="margin-right:10px"></ion-icon> edit product
+        </button>
+        <button *ngIf="assignmentPayload.action == 'DELETE'" ion-button style="font-size: 20px;color:white;" clear item-end>
+            <ion-icon name="md-trash" style="margin-right:10px"></ion-icon> delete product
+        </button>
+        <button *ngIf="assignmentPayload.action == 'SUBMIT'" ion-button style="font-size: 20px;color:white;" clear item-end>
+            <ion-icon name="checkmark" style="margin-right:10px"></ion-icon> submit products
+        </button>
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+            Cancel
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+        <ion-card>
+
+
+            <ion-list *ngIf="assignmentPayload.action !== 'SUBMIT'">
+                <ion-item>
+                  <ion-avatar item-start>
+                      <img style="border-radius: 0px !important;overflow: hidden;width: 80px;height: 80px;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
+                  </ion-avatar>
+                  <h1>{{product?.label}}</h1>
+                  <h3>{{product?.description}}</h3>
+                </ion-item>
+            </ion-list>
+
+            <ion-card-content>
+
+              <ng-container *ngIf="assignmentPayload.action !== 'SUBMIT'">
+                  <h6 *ngIf="assignmentPayload.action == 'DELETE'" class="text-center">Quantity <span> : {{assignmentPayload.quantity}}</span></h6>
+                  <div *ngIf="assignmentPayload.action !== 'DELETE'" class="input-group input-number-group">
+                    <div class="input-group-button" (click)="decrement()">
+                      <span class="input-number-decrement">-</span>
+                    </div>
+                    <input [(ngModel)]="assignmentPayload.quantity" name="quantity" class="input-number" type="number" value="1" min="1" max="1000">
+                    <div class="input-group-button" (click)="increment()">
+                      <span class="input-number-increment">+</span>
+                    </div>
+                  </div>
+              </ng-container>
+
+
+              <ion-list *ngIf="showSubmit || assignmentPayload.action == 'SUBMIT'">
+
+                      <ion-item>
+                        <ion-label>Use current position</ion-label>
+                        <ion-checkbox [(ngModel)]="useCurrentPosition"></ion-checkbox>
+                      </ion-item>
+
+                      <ng-container *ngIf="!useCurrentPosition">
+                          <ion-item>
+                              <ion-label style="color: black;font-weight: bold" stacked>Address</ion-label>
+                              <ion-textarea [(ngModel)]="assignmentPayload.address" style="color: black;font-weight: bold" maxLength="500" rows="5" type="text" placeholder="Address"></ion-textarea>
+                          </ion-item>                          
+                      </ng-container>
+
+
+              </ion-list>
+
+              <ion-row *ngIf="assignmentPayload.action == 'SUBMIT'">
+                  <ion-col col-7>
+                  </ion-col>
+                  <ion-col col-5>
+                      <button (click)="submit()" [disabled]="!useCurrentPosition && !assignmentPayload.address" ion-button color="success" end style="color: white;float: right;">
+                          <ion-icon name="checkmark" style="margin-right: 5px"></ion-icon> Submit
+                      </button>
+                  </ion-col>
+              </ion-row>
+              <ion-row *ngIf="assignmentPayload.action !== 'SUBMIT'">
+                        <ion-col col-2>
+                            <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+                        </ion-col>
+                        <ion-col col-5>
+                            <button (click)="action()" ion-button color="secondary" style="font-size: 12px;font-weight: bold;float: right">
+                                
+                              <ng-container *ngIf="assignmentPayload.action == 'ADD'">
+                                  <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> Add
+                              </ng-container>
+
+                              <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
+                                  <ion-icon name="construct" style="margin-right: 5px"></ion-icon> Edit
+                              </ng-container>
+
+                              <ng-container *ngIf="assignmentPayload.action == 'DELETE'">
+                                  <ion-icon name="md-trash" style="margin-right: 5px"></ion-icon> Delete
+                              </ng-container>
+
+                            </button>
+                        </ion-col>
+                        <ion-col col-5>
+                                <button *ngIf="showSubmit" (click)="actionAndSubmit()" ion-button color="success" style="font-size: 12px;font-weight: bold;float: right">
+                                    <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> 
+
+                                    <ng-container *ngIf="assignmentPayload.action == 'ADD'">
+                                        Add 
+                                    </ng-container>
+      
+                                    <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
+                                         Edit 
+                                    </ng-container>
+      
+                                    <ng-container *ngIf="assignmentPayload.action == 'DELETE'">
+                                        Del 
+                                    </ng-container> & submit
+                                </button>
+                        </ion-col>
+              </ion-row>
+
+                </ion-card-content>
+        </ion-card>
+
+  </ion-content>

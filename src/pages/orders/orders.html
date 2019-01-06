@@ -3,11 +3,12 @@
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center> Mes commandes </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
-        <button ion-button end style="color: black;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+        <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h1>Mes commandes</h1>
+  {{assignmentGlobals | json}}
 </ion-content>

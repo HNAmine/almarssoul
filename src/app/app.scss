@@ -18,8 +18,8 @@
 //-----------------------------------------------------
 
 *{
-  font-family: 'Consolas';
-}
+    font-family: 'Inconsolata', monospace;
+  }
 
 ion-menu{
   .header::after{background-image:none;} /*Hide toolbar shadow*/
