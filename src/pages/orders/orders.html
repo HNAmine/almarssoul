@@ -9,6 +9,38 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Mes commandes</h1>
-  {{assignmentGlobals | json}}
+  <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> Mes commandes </h5>
+  <ion-card *ngFor="let assignmentGlobal of assignmentGlobals">
+    <ion-card-content>
+      <ion-card-title>
+        <h2 style="font-weight: bold">{{assignmentGlobal.doneAt |  date: 'MM/dd/yy hh:mm:ss'}} 
+
+          <ion-badge *ngIf="assignmentGlobal.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>Submitted</ion-badge>
+          <ion-badge *ngIf="assignmentGlobal.state === 'INPROGRESS'" style="float: right;" item-end>In progress</ion-badge>
+          <ion-badge *ngIf="assignmentGlobal.state === 'REJECTED'" style="float: right;background-color: brown" item-end>Rejected</ion-badge>
+          <ion-badge *ngIf="assignmentGlobal.state === 'COMPLETED'" style="float: right;background-color: green" item-end>Completed</ion-badge>
+
+        </h2>
+        
+      </ion-card-title>
+
+      <hr>
+
+          <ion-icon (click)="addNote()" name="md-settings" style="float: right"></ion-icon>
+
+          <p style="font-weight: bold">
+              Owner note : 
+              <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= assignmentGlobal.ownerRate}"></ion-icon>
+            </p>
+      
+            <p style="font-weight: bold" *ngIf="assignmentGlobal.ownerComment">
+              Owner comment : {{assignmentGlobal.ownerComment}}
+            </p>  
+
+      <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(assignmentGlobal)">
+         products
+      </button>
+      <h1 style="float: right;font-weight: bold">{{assignmentGlobal.totalCost + assignmentGlobal.deliveryCost}} DH</h1>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

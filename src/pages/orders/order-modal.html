@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        products
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+            Cancel
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+        <ion-grid style="border: 1px solid" style="font-size: 12px;padding: 0px !important" *ngIf="assignmentGlobal.assignments && assignmentGlobal.assignments.length > 0">
+                <ion-row style="border: 1px solid;background-color: #00abec;">
+                  <ion-col col-3 style="font-weight: bold">
+                    Avatar
+                  </ion-col>
+                  <ion-col col-3 style="font-weight: bold">
+                    Label
+                  </ion-col>
+                  <ion-col col-2 style="font-weight: bold">
+                    U.Cost
+                  </ion-col>
+                  <ion-col col-2 style="font-weight: bold">
+                    Qty
+                  </ion-col>
+                  <ion-col col-2 style="font-weight: bold;text-align: center">
+                    T.Cost
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let assignment of assignmentGlobal.assignments">
+                        <ion-col col-3>
+                              <img style="width: 100% !important; height: 100% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>  
+                        </ion-col>
+                        <ion-col col-3>  
+                            {{assignment?.product?.label}}
+                        </ion-col>
+                        <ion-col col-2>
+                          {{assignment?.product?.cost}}
+                        </ion-col>
+                        <ion-col col-2>
+                          {{assignment.quantity}}
+                        </ion-col>
+                        <ion-col col-2 style="text-align: center">
+                          {{assignment.totalCost}}
+                        </ion-col>
+                </ion-row>
+        </ion-grid>
+  </ion-content>

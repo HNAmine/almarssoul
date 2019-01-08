@@ -25,7 +25,8 @@ export class AssignmentGlobal{
 	ownerRate?: number;
 	ownerComment?: string;
 	deliveryRate?: number;
-	deliveryComment?: string;
+  deliveryComment?: string;
+  deliveryCost?: number;
 }
 
 export enum Action {

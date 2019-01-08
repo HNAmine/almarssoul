@@ -1,6 +1,6 @@
 import { ProfilPage } from './../pages/profil/profil';
 import { BasketPage } from './../pages/basket/basket';
-import { OrdersPage } from './../pages/orders/orders';
+import { OrdersPage, OrderModal } from './../pages/orders/orders';
 import { ProductPage } from './../pages/product/product';
 import { GooglePlus} from '@ionic-native/google-plus';
 import { Authentification } from './../pages/authentification/authentification';
@@ -41,7 +41,8 @@ import { ProductModal } from '../pages/product/product-modal';
     BasketPage,
     ProfilPage,
     ProductModal,
-    ProductsListComponent
+    ProductsListComponent,
+    OrderModal
   ],
   imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()],
@@ -58,7 +59,8 @@ import { ProductModal } from '../pages/product/product-modal';
     ProductPage,
     BasketPage,
     ProfilPage,
-    ProductModal
+    ProductModal,
+    OrderModal
   ],
   providers: [
     StatusBar,
