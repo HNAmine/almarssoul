@@ -1,7 +1,7 @@
 import { BasketPage } from './../basket/basket';
 import { Component } from "@angular/core";
 import { NavController, NavParams, LoadingController, ModalController } from "ionic-angular";
-import { Product, Action } from "../../model/product.model";
+import { Product, Action, ProductDetails } from "../../model/product.model";
 import { Store } from '../../model/store.model';
 import { Category } from '../../model/category.model';
 import { Storage } from '@ionic/storage';
@@ -93,7 +93,11 @@ export class ProductPage {
   }
 
   openProductModal(product: Product){
-    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.ADD, product, showSubmit: true });
+    const p = new ProductDetails();
+    p.productLabel = product.label;
+    p.productDescription = product.description; 
+    p.productId = product.id;
+    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.ADD, product : p, showSubmit: true });
     profileModal.present()
   }
 }

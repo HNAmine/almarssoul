@@ -26,6 +26,7 @@ import { ProductService } from '../providers/product.service';
 import { ProductsListComponent } from '../components/products-list/products-list';
 import { BasketService } from '../providers/basket.service';
 import { ProductModal } from '../pages/product/product-modal';
+import { InvitationPage } from '../pages/invitation/invitation';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProductModal } from '../pages/product/product-modal';
     ProfilPage,
     ProductModal,
     ProductsListComponent,
-    OrderModal
+    OrderModal,
+    InvitationPage
   ],
   imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()],
@@ -60,7 +62,8 @@ import { ProductModal } from '../pages/product/product-modal';
     BasketPage,
     ProfilPage,
     ProductModal,
-    OrderModal
+    OrderModal,
+    InvitationPage
   ],
   providers: [
     StatusBar,

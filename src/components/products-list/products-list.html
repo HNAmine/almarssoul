@@ -1,6 +1,6 @@
-<h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> Current basket <span *ngIf="assignmentGlobal.createdAt">({{assignmentGlobal.createdAt |  date: 'MM/dd/yy h:mm:ss'}})</span></h5>
-<h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="assignmentGlobal.assignments && assignmentGlobal.assignments.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no product in current basket</h6>
-<ion-grid style="border: 1px solid" style="font-size: 10px;padding: 0px !important" *ngIf="assignmentGlobal.assignments && assignmentGlobal.assignments.length > 0">
+<h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> Current basket <span *ngIf="basket.createdAt">({{basket.createdAt |  date: 'MM/dd/yy'}})</span></h5>
+<h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="basket.products && basket.products.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no product in current basket</h6>
+<ion-grid style="border: 1px solid" style="font-size: 10px;padding: 0px !important" *ngIf="basket.products && basket.products.length > 0">
   <ion-row style="border: 1px solid;background-color: #00abec;">
     <ion-col col-2 style="font-weight: bold">
       Avatar
@@ -22,24 +22,24 @@
     </ion-col>
   </ion-row>
 
-  <ion-row *ngFor="let assignment of assignmentGlobal.assignments">
-    <ion-col col-2>
+  <ion-row *ngFor="let product of basket.products">
+    <ion-col col-2 (click)="updateProduct(product)">
           <img style="width: 100% !important; height: 100% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>  
     </ion-col>
-    <ion-col col-2 (click)="updateProduct(assignment)">  
-        {{assignment?.product?.label}}
+    <ion-col col-2 (click)="updateProduct(product)">  
+      {{product?.productLabel}}
     </ion-col>
-    <ion-col col-2>
-      {{assignment?.product?.cost}}
+    <ion-col col-2 (click)="updateProduct(product)">
+      {{product?.productCost}}
     </ion-col>
-    <ion-col col-2>
-      {{assignment.quantity}}
+    <ion-col col-2 (click)="updateProduct(product)">
+      {{product.quantity}}
+    </ion-col>
+    <ion-col col-2 style="text-align: center" (click)="updateProduct(product)">
+      {{product.totalCost}}
     </ion-col>
     <ion-col col-2 style="text-align: center">
-      {{assignment.totalCost}}
-    </ion-col>
-    <ion-col col-2 style="text-align: center">
-        <ion-icon (click)="deleteProduct(assignment)" name="md-trash" style="color: brown;"></ion-icon>
+        <ion-icon (click)="deleteProduct(product)" name="md-trash" style="color: brown;"></ion-icon>
     </ion-col>
   </ion-row>
 
@@ -47,7 +47,7 @@
     <ion-col col-4>
     </ion-col>
     <ion-col col-8 style="border: 1px solid;background-color: #00abec;text-align: center;font-weight: bold">
-      Subtotal ({{assignmentGlobal.assignments.length}} item) : {{assignmentGlobal.totalCost}} + {{assignmentGlobal.deliveryCost}} = {{assignmentGlobal.totalCost + assignmentGlobal.deliveryCost}}
+      Subtotal ({{basket.products.length}} item) : {{basket.totalCost}} + {{basket.deliveryCost}} = {{basket.totalCost + basket.deliveryCost}}
     </ion-col>
   </ion-row>
 

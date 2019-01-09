@@ -12,7 +12,7 @@ import {
 import { Storage } from '@ionic/storage';
 import { tokenIndex } from '../../app/config';
 import { BasketService } from '../../providers/basket.service';
-import { AssignmentGlobal } from '../../model/product.model';
+import { BasketDetails } from '../../model/product.model';
 
 /**
  * Generated class for the Dashboard page.
@@ -27,7 +27,7 @@ import { AssignmentGlobal } from '../../model/product.model';
 export class OrdersPage {
 
   token = null;
-  assignmentGlobals:AssignmentGlobal[] = [];
+  baskets:BasketDetails[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -44,7 +44,7 @@ export class OrdersPage {
   ionViewDidLoad() {
     this.storage.get(tokenIndex).then((token) => {
       this.token = token;
-      this.loadCommandes();
+      this.loadOrders();
     });
   }
 
@@ -52,25 +52,25 @@ export class OrdersPage {
     this.navCtrl.push(BasketPage);
   }
 
-  loadCommandes() {
+  loadOrders() {
     let loader = this.loadingCtrl.create({
       content: "Please wait..."
     });
     loader.present();
-    this.basketService.getCommandes(this.token).subscribe((assignmentGlobals:AssignmentGlobal[])=> {
-        this.assignmentGlobals = assignmentGlobals;
+    this.basketService.getOrders(this.token).subscribe((baskets:BasketDetails[])=> {
+        this.baskets = baskets;
         loader.dismiss();
     }, () => {
         loader.dismiss();
     })
   }
 
-  goToProductsDetails(assignmentGlobal:AssignmentGlobal){
-    let orderModal = this.modalCtrl.create(OrderModal, { assignment: assignmentGlobal });
+  goToProductsDetails(basket:BasketDetails){
+    let orderModal = this.modalCtrl.create(OrderModal, { basket });
     orderModal.present()
   }
 
-  addNote(){
+  addNote(basket : BasketDetails){
 
     let alert = this.alertCtrl.create();
 
@@ -80,54 +80,53 @@ export class OrdersPage {
       type: 'radio',
       label: 'VERY GOOD',
       value: '5',
-      checked: true
+      checked: basket.ownerRate === 5
     });
 
     alert.addInput({
       type: 'radio',
       label: 'GOOD',
-      value: '4'
+      value: '4',
+      checked: basket.ownerRate === 4
     });
 
     alert.addInput({
       type: 'radio',
       label: 'MOYEN',
-      value: '3'
+      value: '3',
+      checked: basket.ownerRate === 3
     });
 
     alert.addInput({
       type: 'radio',
       label: 'NOT BAD',
-      value: '2'
+      value: '2',
+      checked: basket.ownerRate === 2
     });
 
     alert.addInput({
       type: 'radio',
       label: 'BAD',
-      value: '1'
+      value: '1',
+      checked: basket.ownerRate === 1
     });
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Submit',
       handler: data => {
-        console.log('Checkbox data:', data);
+        let loader = this.loadingCtrl.create({
+          content: "Please wait..."
+        });
+        loader.present();
+        this.basketService.addNote(basket.id, data, this.token).subscribe(succes => {
+          loader.dismiss();
+          basket.ownerRate = data;
+        }, (err)=> {
+          loader.dismiss();
+          throw err;
+        })
       }
     });
-    // let alert = this.alertCtrl.create({
-    //   title: 'Note',
-    //   inputs: [
-    //     {
-    //       name: 'comment',
-    //       placeholder: 'Please Leave a comment'
-    //     },
-    //     {
-    //       name: 'password',
-    //       placeholder: 'Password',
-    //       type: 'radio'
-    //     }
-    //   ],
-    //   buttons: ['Dismiss']
-    // });
     alert.present();
   }
 }
@@ -137,13 +136,13 @@ export class OrdersPage {
   templateUrl: "order-modal.html"
 })
 export class OrderModal {
-  assignmentGlobal:AssignmentGlobal = {};
+  basket:BasketDetails = {};
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController,
     public navParams: NavParams, params: NavParams
   ) {
-    this.assignmentGlobal = params.get('assignment');
+    this.basket = params.get('basket');
   }
 
   dismiss() {

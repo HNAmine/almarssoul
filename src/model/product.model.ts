@@ -40,3 +40,26 @@ export class AssignmentPayload {
   submit?: boolean;
   address?:string;
 }
+
+export class BasketDetails {
+  id?: number;
+	state?: string;
+	createdAt?: Date;
+	doneAt?: Date;
+	ownerFirstName?: string;
+	ownerLastName?: string;
+  phone?: string;
+  ownerRate?: number;
+  deliveryCost?: number;
+  products?: ProductDetails[];
+}
+
+export class ProductDetails{
+  productId?: number;
+  productLabel?: string;
+  productDescription?: string;
+	categoryLabel?: string;
+	storeLabel?: string;
+	productCost?: number;
+	quantity?: number;
+}

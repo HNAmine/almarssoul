@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title text-center> Mes commandes </ion-title>
+    <ion-title text-center> My orders </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
     </ion-buttons>
@@ -10,15 +10,15 @@
 
 <ion-content padding>
   <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> Mes commandes </h5>
-  <ion-card *ngFor="let assignmentGlobal of assignmentGlobals">
+  <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
       <ion-card-title>
-        <h2 style="font-weight: bold">{{assignmentGlobal.doneAt |  date: 'MM/dd/yy hh:mm:ss'}} 
+        <h2 style="font-weight: bold">{{basket.doneAt |  date: 'MM/dd/yy'}} 
 
-          <ion-badge *ngIf="assignmentGlobal.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>Submitted</ion-badge>
-          <ion-badge *ngIf="assignmentGlobal.state === 'INPROGRESS'" style="float: right;" item-end>In progress</ion-badge>
-          <ion-badge *ngIf="assignmentGlobal.state === 'REJECTED'" style="float: right;background-color: brown" item-end>Rejected</ion-badge>
-          <ion-badge *ngIf="assignmentGlobal.state === 'COMPLETED'" style="float: right;background-color: green" item-end>Completed</ion-badge>
+          <ion-badge *ngIf="basket.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>Submitted</ion-badge>
+          <ion-badge *ngIf="basket.state === 'INPROGRESS'" style="float: right;" item-end>In progress</ion-badge>
+          <ion-badge *ngIf="basket.state === 'REJECTED'" style="float: right;background-color: brown" item-end>Rejected</ion-badge>
+          <ion-badge *ngIf="basket.state === 'COMPLETED'" style="float: right;background-color: green" item-end>Completed</ion-badge>
 
         </h2>
         
@@ -26,21 +26,17 @@
 
       <hr>
 
-          <ion-icon (click)="addNote()" name="md-settings" style="float: right"></ion-icon>
+          <ion-icon (click)="addNote(basket)" name="md-settings" style="float: right"></ion-icon>
 
-          <p style="font-weight: bold">
+            <p style="font-weight: bold">
               Owner note : 
-              <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= assignmentGlobal.ownerRate}"></ion-icon>
+              <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= basket.ownerRate}"></ion-icon>
             </p>
-      
-            <p style="font-weight: bold" *ngIf="assignmentGlobal.ownerComment">
-              Owner comment : {{assignmentGlobal.ownerComment}}
-            </p>  
 
-      <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(assignmentGlobal)">
+      <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(basket)">
          products
       </button>
-      <h1 style="float: right;font-weight: bold">{{assignmentGlobal.totalCost + assignmentGlobal.deliveryCost}} DH</h1>
+      <h1 style="float: right;font-weight: bold">{{basket.totalCost + basket.deliveryCost}} DH</h1>
     </ion-card-content>
   </ion-card>
 </ion-content>

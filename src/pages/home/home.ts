@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 import { tokenIndex } from '../../app/config';
 import { AuthentificationService } from '../../providers/authentification.service';
 import { User } from '../../model/authentification.model';
+import { InvitationPage } from '../invitation/invitation';
 
 /**
  * Generated class for the Dashboard page.
@@ -54,6 +55,7 @@ export class Home {
         icon: "ios-basket",
         component: BasketPage
       },
+      { title: "Invite", icon: "md-mail", component: InvitationPage },
       { title: "Profile", icon: "md-person", component: ProfilPage }
     ];
   }

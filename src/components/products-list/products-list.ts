@@ -3,7 +3,7 @@ import { BasketService } from '../../providers/basket.service';
 import { tokenIndex } from '../../app/config';
 import { Storage } from '@ionic/storage';
 import { LoadingController, ToastController, ModalController } from 'ionic-angular';
-import { AssignmentGlobal, AssignmentPayload, Action, Assignment } from '../../model/product.model';
+import { AssignmentPayload, Action, Assignment, BasketDetails, ProductDetails } from '../../model/product.model';
 import { ProductModal } from '../../pages/product/product-modal';
 
 /**
@@ -19,7 +19,7 @@ import { ProductModal } from '../../pages/product/product-modal';
 export class ProductsListComponent {
 
   token = null;
-  assignmentGlobal: AssignmentGlobal = {totalCost: 0, assignments : []};
+  basket: BasketDetails = {};
   assignmentPayload:AssignmentPayload = {quantity: 1};
 
   constructor(private basketService:BasketService, private storage: Storage,
@@ -37,24 +37,24 @@ export class ProductsListComponent {
       content: "Please wait..."
     });
     loader.present();
-    this.basketService.getCurrentBasket(this.token).subscribe(assignmentGlobal => {
-      this.assignmentGlobal = assignmentGlobal;
+    this.basketService.getCurrentBasket(this.token).subscribe(basket => {
+      this.basket = basket;
       loader.dismiss();
     }, ()=> {
       loader.dismiss();
     });
   }
 
-  deleteProduct(assignment: Assignment){
-    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.DELETE, product: assignment.product , quantity : assignment.quantity , showSubmit: this.assignmentGlobal.assignments && this.assignmentGlobal.assignments.length - 1 > 0});
+  deleteProduct(product: ProductDetails){
+    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.DELETE, product , showSubmit: this.basket.products && this.basket.products.length - 1 > 0});
     profileModal.present();
     profileModal.onDidDismiss(data => {
       this.loadCurrentBasket();
     });
   }
 
-  updateProduct(assignment: Assignment) {
-    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.UPDATE, product: assignment.product, quantity : assignment.quantity , showSubmit: true });
+  updateProduct(product: ProductDetails) {
+    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.UPDATE, product , showSubmit: true });
     profileModal.present();
     profileModal.onDidDismiss(data => {
       if(data.loadData){

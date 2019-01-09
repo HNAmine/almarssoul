@@ -26,21 +26,20 @@
 
         <ion-card>
 
-
             <ion-list *ngIf="assignmentPayload.action !== 'SUBMIT'">
                 <ion-item>
                   <ion-avatar item-start>
                       <img style="border-radius: 0px !important;overflow: hidden;width: 80px;height: 80px;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
                   </ion-avatar>
-                  <h1>{{product?.label}}</h1>
-                  <h3>{{product?.description}}</h3>
+                  <h1>{{product?.productLabel}}</h1>
+                  <h3>{{product?.productDescription}}</h3>
                 </ion-item>
             </ion-list>
 
             <ion-card-content>
 
               <ng-container *ngIf="assignmentPayload.action !== 'SUBMIT'">
-                  <h6 *ngIf="assignmentPayload.action == 'DELETE'" class="text-center">Quantity <span> : {{assignmentPayload.quantity}}</span></h6>
+                  <h6 *ngIf="assignmentPayload.action == 'DELETE'" class="text-center">Quantity <span> : {{product.quantity}}</span></h6>
                   <div *ngIf="assignmentPayload.action !== 'DELETE'" class="input-group input-number-group">
                     <div class="input-group-button" (click)="decrement()">
                       <span class="input-number-decrement">-</span>

@@ -1,6 +1,6 @@
 import { NavParams, ViewController, LoadingController, ToastController } from "ionic-angular";
 import { Component } from "@angular/core";
-import { Product, AssignmentPayload, Action } from "../../model/product.model";
+import { AssignmentPayload, Action, ProductDetails } from "../../model/product.model";
 import { BasketService } from "../../providers/basket.service";
 import { Storage } from '@ionic/storage';
 import { tokenIndex } from "../../app/config";
@@ -11,7 +11,7 @@ import { tokenIndex } from "../../app/config";
   })
   export class ProductModal {
   
-   product:Product = {};
+   product:ProductDetails = {};
    assignmentPayload:AssignmentPayload = {quantity: 1};
    token = null;
    showSubmit:boolean = true;
@@ -23,10 +23,10 @@ import { tokenIndex } from "../../app/config";
         this.product = params.get('product');
         this.assignmentPayload.action = params.get('mode');
         if(this.assignmentPayload.action !== Action.SUBMIT){
-          this.assignmentPayload.idProduct = this.product.id;
+          this.assignmentPayload.idProduct = this.product.productId;
         }
         if(this.assignmentPayload.action === Action.UPDATE || this.assignmentPayload.action === Action.DELETE){
-          this.assignmentPayload.quantity = params.get('quantity');
+          this.assignmentPayload.quantity = this.product.quantity;
         }
         this.showSubmit = params.get('showSubmit');
    }

@@ -3,6 +3,15 @@ export interface Credentials {
   password: string;
 }
 
+export class Invitation {
+  id: number;
+  createdAt: Date;
+  validationCode?: string;
+  phone?:string;
+  state?:string;
+  invited?: User;
+}
+
 export interface User {
   id?: number;
   email?: string;

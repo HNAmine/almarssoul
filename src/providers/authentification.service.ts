@@ -15,6 +15,13 @@ export class AuthentificationService {
 
   constructor(private _http: HttpClient) {}
 
+  public getInvitation(tokenHash): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    return this._http.get(this.dns + 'invitations', {
+      headers
+    });
+  }
   /**
 	 * --------------------------------------------------------------
 	 *
