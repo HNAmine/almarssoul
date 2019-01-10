@@ -45,10 +45,16 @@ export class UserLogin {
 
     loader.present();
       this.authentificationService.signin(this.credential).subscribe((token:Value<string>) => {
+
+        if(this.authentificationService.isClient(token.value)) {
          // set a key/value
-        this.storage.set(tokenIndex, token.value);
-        loader.dismiss();
-        this.homePage();
+         this.storage.set(tokenIndex, token.value);
+         loader.dismiss();
+         this.homePage();
+        } else {
+          loader.dismiss();
+          throw new Error('You are not authorised')
+        }
       }, (err: { error: CustomError } )=> {
         loader.dismiss();
         throw err;

@@ -28,7 +28,7 @@ export class ErrorsHandler implements ErrorHandler {
     alert.present();
   }
 
-  handleError(payload: { error: CustomError }) {
+  handleError(payload: { error: CustomError } | any) {
     if (payload instanceof HttpErrorResponse) {
       // Server or connection error happened
       if (!navigator.onLine) {
@@ -42,9 +42,9 @@ export class ErrorsHandler implements ErrorHandler {
         // this.router.navigate(['auth']);
       }
     } else {
+      debugger;
       // Handle Client Error (Angular Error, ReferenceError...)
-      console.log('Handle Client Error (Angular Error, ReferenceError...)');
-      console.log(payload);
+      this.showAlert(payload.message);
     }
   }
 }

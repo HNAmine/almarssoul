@@ -3,7 +3,7 @@ import { BasketService } from '../../providers/basket.service';
 import { tokenIndex } from '../../app/config';
 import { Storage } from '@ionic/storage';
 import { LoadingController, ToastController, ModalController } from 'ionic-angular';
-import { AssignmentPayload, Action, Assignment, BasketDetails, ProductDetails } from '../../model/product.model';
+import { AssignmentPayload, Action, BasketDetails, ProductDetails } from '../../model/product.model';
 import { ProductModal } from '../../pages/product/product-modal';
 
 /**

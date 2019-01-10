@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { Credentials, User, Token } from '../model/authentification.model';
+import { Credentials, User, Token, Role } from '../model/authentification.model';
 import { dns, tokenPrefix } from '../app/config';
 
 @Injectable()
@@ -49,6 +49,22 @@ export class AuthentificationService {
       return token.user;
     }
     return null;
+  }
+
+  isClient(tokenHash) {
+    debugger;
+    let user = this.getCurrentUser(tokenHash);
+    return user && user.roles && this.haveRole(user.roles, Role.ROLE_CLIENT);
+  }
+
+  haveRole(roles: Role[], role:Role){
+    let value = false;
+    roles.forEach(r => {
+      if(r === role) {
+        value = true;
+      }
+    });
+    return value;
   }
 
   refreshPrincipal(tokenHash) {
