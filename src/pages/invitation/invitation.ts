@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
-import { NavController, LoadingController } from "ionic-angular";
+import { NavController, LoadingController, ToastController } from "ionic-angular";
 import { BasketPage } from "../basket/basket";
 import { AuthentificationService } from "../../providers/authentification.service";
 import { Invitation } from "../../model/authentification.model";
 import { Storage } from '@ionic/storage';
 import { tokenIndex } from "../../app/config";
+import { SMS } from '@ionic-native/sms';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: "invitation",
@@ -14,12 +16,15 @@ export class InvitationPage {
   mode: string = "ADD";
   token = null;
   invitations:Invitation[] = [];
+  phone: string;
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     private storage: Storage,
-
-    private authentificationService: AuthentificationService
+    private authentificationService: AuthentificationService,
+    public toastCtrl: ToastController,
+    private sms: SMS,
+    private socialSharing: SocialSharing
   ) {
   }
 
@@ -53,5 +58,37 @@ export class InvitationPage {
       trigram += lastName.charAt(0);
     }
     return trigram;
+  }
+
+  invite() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+    this.storage.get(tokenIndex).then((token) => {
+      this.authentificationService.invite(this.phone, token).subscribe((invitation: Invitation) => {
+        loader.dismiss();
+        this.phone = null;
+        const toast = this.toastCtrl.create({
+          message: 'well sent invitation',
+          duration: 3000
+        });
+        this.sms.send(invitation.phone, this.getMessageFromInvitation(invitation));
+        this.whatsAppNotify(invitation);
+        toast.present();
+        this.loadInvitation();
+      }, err => {
+        loader.dismiss();
+        throw err;
+      })
+  });
+  }
+
+  getMessageFromInvitation(invitation: Invitation){
+    return 'Hello My friend, please subscribe to almarssoul application, your activation code is :'+ invitation.validationCode + ' your phone (login) is : '+ invitation.phone
+  }
+  
+  whatsAppNotify(invitation: Invitation){
+    this.socialSharing.shareViaWhatsAppToReceiver(invitation.phone, this.getMessageFromInvitation(invitation));
   }
 }

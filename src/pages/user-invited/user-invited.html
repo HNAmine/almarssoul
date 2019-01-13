@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar hideBackButton="false">
+    <ion-title text-center>
+      <ion-icon name="md-mail"></ion-icon> Invited
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div>
+    <img class="center" style="height: 150px" src="./assets/imgs/delivery.png"/>
+  </div>
+
+  <form #form="ngForm">
+      <ion-list no-lines padding-top>
+
+        <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Phone <span class="required">(*)</span></ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="invited.phone"
+                name="phone"
+                minlength="10"
+                maxlength="30"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Validation code <span class="required">(*)</span></ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="invited.validationCode"
+                name="validationCode"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">First name <span class="required">(*)</span></ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="invited.firstName"
+                name="firstName"
+                minlength="4"
+                maxlength="50"
+                required>
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating style="color: black;font-weight: bold">Last name</ion-label>
+              <ion-input
+                type="text"
+                [(ngModel)]="invited.lastName"
+                name="lastName"
+                minlength="4"
+                maxlength="50">
+              </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating style="color: black;font-weight: bold">Password <span class="required">(*)</span></ion-label>
+            <ion-input
+              type="password"
+              [(ngModel)]="invited.password"
+              name="password"
+              minlength="4"
+              maxlength="50"
+              required></ion-input>
+          </ion-item>
+
+      </ion-list>
+
+      <button ion-button block round color="secondary" (click)="register()" [disabled]="!form.valid">
+        Register
+      </button>
+
+    </form>
+
+</ion-content>

@@ -27,6 +27,11 @@ import { ProductsListComponent } from '../components/products-list/products-list
 import { BasketService } from '../providers/basket.service';
 import { ProductModal } from '../pages/product/product-modal';
 import { InvitationPage } from '../pages/invitation/invitation';
+import { SMS } from '@ionic-native/sms';
+import { UserInvited } from '../pages/user-invited/user-invited';
+import { Geolocation } from '@ionic-native/geolocation';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
@@ -44,7 +49,8 @@ import { InvitationPage } from '../pages/invitation/invitation';
     ProductModal,
     ProductsListComponent,
     OrderModal,
-    InvitationPage
+    InvitationPage,
+    UserInvited
   ],
   imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()],
@@ -63,7 +69,8 @@ import { InvitationPage } from '../pages/invitation/invitation';
     ProfilPage,
     ProductModal,
     OrderModal,
-    InvitationPage
+    InvitationPage,
+    UserInvited
   ],
   providers: [
     StatusBar,
@@ -73,7 +80,11 @@ import { InvitationPage } from '../pages/invitation/invitation';
     AuthentificationService,
     StoreService,
     BasketService,
+    SMS,
+    Geolocation,
     ProductService,
+    SocialSharing,
+    LaunchNavigator,
     {
       provide: ErrorHandler,
       useClass: ErrorsHandler

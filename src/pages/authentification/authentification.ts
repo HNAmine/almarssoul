@@ -5,6 +5,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { UserSignup } from '../user-signup/user-signup';
 import { tokenIndex } from '../../app/config';
 import { Storage } from '@ionic/storage';
+import { UserInvited } from '../user-invited/user-invited';
 
 @Component({
   selector: "page-authentification",
@@ -12,7 +13,14 @@ import { Storage } from '@ionic/storage';
 })
 export class Authentification {
 
-
+  displayName: any;
+  email: any;
+  familyName: any;
+  givenName: any;
+  userId: any;
+  imageUrl: any;
+  isLoggedIn:boolean = false;
+  err;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,17 +33,32 @@ export class Authentification {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad UserLogin");
   }
 
   loginGoogle(){
     this.googlePlus.login({}).then(
       res => {
-        debugger;
-        console.log(res)}).catch(err => {
-          debugger;
+        this.displayName = res.displayName;
+        this.email = res.email;
+        this.familyName = res.familyName;
+        this.givenName = res.givenName;
+        this.userId = res.userId;
+        this.imageUrl = res.imageUrl;
 
-          console.error(err)});
+        this.isLoggedIn = true;
+        const toast = this.toastCtrl.create({
+          message: 'User information '+this.displayName + this.email + this.familyName + this.givenName + this.userId + this.imageUrl,
+          duration: 3000
+        });
+        toast.present();
+        }).catch(err => {
+        this.err = err;
+        const toast = this.toastCtrl.create({
+          message: 'Err '+ this.err,
+          duration: 3000
+        });
+        toast.present();
+        console.error(err)});
   }
 
   login() {
@@ -44,6 +67,10 @@ export class Authentification {
 
   signup(){
     this.navCtrl.push(UserSignup);
+  }
+
+  invited(){
+    this.navCtrl.push(UserInvited);
   }
 
 }

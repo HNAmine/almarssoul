@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
+import { BehaviorSubject } from 'rxjs';
 
 export interface CustomError {
   timestamp: string;
@@ -15,6 +16,7 @@ export interface CustomError {
 @Injectable()
 export class ErrorsHandler implements ErrorHandler {
 
+  logoutError = new BehaviorSubject({});
   constructor(public alertCtrl: AlertController) {
   }
 
@@ -29,6 +31,7 @@ export class ErrorsHandler implements ErrorHandler {
   }
 
   handleError(payload: { error: CustomError } | any) {
+    this.logoutError.next(true);
     if (payload instanceof HttpErrorResponse) {
       // Server or connection error happened
       if (!navigator.onLine) {
@@ -40,9 +43,11 @@ export class ErrorsHandler implements ErrorHandler {
         // go to login page !
         // this.iziToast.error({title: 'Service not available', position: 'topCenter', toastOnce: true});
         // this.router.navigate(['auth']);
+        
+        // if(this.navCtrl){
+        // this.navCtrl.setRoot(Authentification);}
       }
     } else {
-      debugger;
       // Handle Client Error (Angular Error, ReferenceError...)
       this.showAlert(payload.message);
     }

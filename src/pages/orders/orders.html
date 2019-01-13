@@ -9,7 +9,10 @@
 </ion-header>
 
 <ion-content padding>
-  <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> Mes commandes </h5>
+  <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> My orders </h5>
+
+  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="!loading && baskets && baskets.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> you have no orders</h6>
+
   <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
       <ion-card-title>
@@ -28,14 +31,16 @@
 
           <ion-icon (click)="addNote(basket)" name="md-settings" style="float: right"></ion-icon>
 
-            <p style="font-weight: bold">
+            <p style="font-weight: bold" (click)="addNote(basket)">
               Owner note : 
               <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= basket.ownerRate}"></ion-icon>
             </p>
 
-      <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(basket)">
-         products
-      </button>
+            <p (click)="showInMap(basket)"><ion-icon name="locate"></ion-icon> {{basket.lat}}, {{basket.lng}}</p>
+
+            <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(basket)">
+              products
+            </button>
       <h1 style="float: right;font-weight: bold">{{basket.totalCost + basket.deliveryCost}} DH</h1>
     </ion-card-content>
   </ion-card>

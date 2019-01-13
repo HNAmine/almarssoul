@@ -22,6 +22,14 @@ export class AuthentificationService {
       headers
     });
   }
+
+  public invite(phone, tokenHash): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    return this._http.get(this.dns + 'invite/' + phone, {
+      headers
+    });
+  }
   /**
 	 * --------------------------------------------------------------
 	 *
@@ -43,6 +51,12 @@ export class AuthentificationService {
       });
   }
 
+  public acceptInvitation(invited: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._http.post(this.dns + 'accept-invitation', invited, {
+      headers
+    });}
+
   getCurrentUser(tokenHash): User {
     if (tokenHash) {
       const token: Token = this.jwtHelper.decodeToken(tokenHash);
@@ -52,7 +66,6 @@ export class AuthentificationService {
   }
 
   isClient(tokenHash) {
-    debugger;
     let user = this.getCurrentUser(tokenHash);
     return user && user.roles && this.haveRole(user.roles, Role.ROLE_CLIENT);
   }

@@ -24,8 +24,9 @@
 <ion-content padding>
   <div [ngSwitch]="mode">
     <ion-list *ngSwitchCase="'ADD'">
-      <ion-item>
-        <ion-label floating style="color: black;font-weight: bold">Phone <span class="required">(*)</span></ion-label>
+
+    <ion-item>
+        <ion-label floating style="color: black;font-weight: bold">Phone of invited <span class="required">(*)</span></ion-label>
         <ion-input
           type="text"
           [(ngModel)]="phone"
@@ -36,11 +37,24 @@
         </ion-input>
     </ion-item>
 
+    <button ion-button block round color="secondary" (click)="invite()" [disabled]="!phone">
+        Send
+    </button>
+    <!-- <ion-item>
+        <ion-label floating style="color: black;font-weight: bold">Validation code <span class="required">(*)</span></ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="invitationPayload.validationCode"
+          name="validationCode"
+          required>
+        </ion-input>
+    </ion-item>
+  
     <ion-item>
         <ion-label floating style="color: black;font-weight: bold">First name <span class="required">(*)</span></ion-label>
         <ion-input
           type="text"
-          [(ngModel)]="firstName"
+          [(ngModel)]="invitationPayload.firstName"
           name="fullName"
           minlength="4"
           maxlength="50"
@@ -52,49 +66,30 @@
         <ion-label floating style="color: black;font-weight: bold">Last name </ion-label>
         <ion-input
           type="text"
-          [(ngModel)]="lastName"
+          [(ngModel)]="invitationPayload.lastName"
           name="lastName"
           minlength="4"
           maxlength="50">
         </ion-input>
-    </ion-item>
-
-    <ion-item>
-        <ion-label floating style="color: black;font-weight: bold">Email</ion-label>
-        <ion-input
-          type="text"
-          [(ngModel)]="email"
-          name="email">
-        </ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating style="color: black;font-weight: bold">Address</ion-label>
-      <ion-textarea
-        type="text"
-        [(ngModel)]="address"
-        name="address">
-      </ion-textarea>
-    </ion-item>
+    </ion-item> -->
+  
     </ion-list>
 
       <ion-list *ngSwitchCase="'LIST'">
         <ion-item *ngFor="let invitation of invitations">
           <ion-avatar item-start>
-            <img  *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" src="./assets/imgs/loading.png">
-
+            <ion-icon *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" name="md-mail"></ion-icon>
             <h2 *ngIf="invitation.state == 'ACCEPTED'" style="font-weight: bold">{{getTrigram(invitation?.invited.firstName, invitation?.invited.lastName)}}</h2>
-
           </ion-avatar>
-          <h2 *ngIf="invitation.state == 'ACCEPTED'">{{invitation?.invited?.firstName}} {{invitation?.invited?.lastName}}</h2>
-          <h2>{{invitation.phone}}</h2>
+
+          <h2 *ngIf="invitation.state == 'ACCEPTED'" style="font-weight: bold">{{invitation?.invited?.firstName}} {{invitation?.invited?.lastName}}</h2>
+          <h2 style="font-weight: bold">{{invitation.phone}}</h2>
           <p *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'">{{invitation.validationCode}}</p>
           <p>{{invitation.createdAt |  date: 'MM/dd/yy hh:mm:ss'}}</p>
-          <button style="font-weight: bold" *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" ion-button clear item-end>
-            
-            <ng-container *ngIf="invitation.state == 'DRAFT'">Notify by SMS</ng-container>
-            <ng-container *ngIf="invitation.state == 'SENDED'">Renotify by SMS</ng-container>
-          
+          <button (click)="whatsAppNotify(invitation)" style="font-weight: bold" *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" ion-button clear item-end>
+
+            <ion-icon name="logo-whatsapp" style="color:#25D366;font-size: 22px;"></ion-icon>
+
           </button>
         </ion-item>
       </ion-list>

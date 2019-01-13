@@ -97,6 +97,7 @@ export class ProductPage {
     p.productLabel = product.label;
     p.productDescription = product.description; 
     p.productId = product.id;
+    p.productCost = product.cost;
     let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.ADD, product : p, showSubmit: true });
     profileModal.present()
   }

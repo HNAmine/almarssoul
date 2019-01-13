@@ -38,8 +38,8 @@
     <ion-col col-2 style="text-align: center" (click)="updateProduct(product)">
       {{product.totalCost}}
     </ion-col>
-    <ion-col col-2 style="text-align: center">
-        <ion-icon (click)="deleteProduct(product)" name="md-trash" style="color: brown;"></ion-icon>
+    <ion-col col-2 style="text-align: center" (click)="deleteProduct(product)">
+        <ion-icon name="md-trash" style="color: brown;"></ion-icon>
     </ion-col>
   </ion-row>
 

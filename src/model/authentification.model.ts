@@ -12,6 +12,14 @@ export class Invitation {
   invited?: User;
 }
 
+export class InvitationPayload {
+  validationCode?: string;
+  phone?:string;
+  firstName?:string;
+  lastName?:string;
+  password?: User;
+}
+
 export interface User {
   id?: number;
   email?: string;

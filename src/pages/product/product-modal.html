@@ -25,7 +25,6 @@
   <ion-content>
 
         <ion-card>
-
             <ion-list *ngIf="assignmentPayload.action !== 'SUBMIT'">
                 <ion-item>
                   <ion-avatar item-start>
@@ -33,6 +32,7 @@
                   </ion-avatar>
                   <h1>{{product?.productLabel}}</h1>
                   <h3>{{product?.productDescription}}</h3>
+                  <h4 style="font-weight: bold">{{product?.productCost}} x {{assignmentPayload?.quantity}} = {{product?.productCost * assignmentPayload?.quantity}}</h4>
                 </ion-item>
             </ion-list>
 
@@ -54,7 +54,9 @@
 
               <ion-list *ngIf="showSubmit || assignmentPayload.action == 'SUBMIT'">
 
-                      <ion-item>
+                      <p *ngIf="assignmentPayload.action == 'SUBMIT'" style="font-weight: bold">(products cost) {{productsCost}} + (delivery cost) {{deliveryCost}} = (total) {{productsCost + deliveryCost}}</p>
+
+                      <!-- <ion-item>
                         <ion-label>Use current position</ion-label>
                         <ion-checkbox [(ngModel)]="useCurrentPosition"></ion-checkbox>
                       </ion-item>
@@ -64,9 +66,9 @@
                               <ion-label style="color: black;font-weight: bold" stacked>Address</ion-label>
                               <ion-textarea [(ngModel)]="assignmentPayload.address" style="color: black;font-weight: bold" maxLength="500" rows="5" type="text" placeholder="Address"></ion-textarea>
                           </ion-item>                          
-                      </ng-container>
+                      </ng-container> -->
 
-
+                    <p style="font-weight: bold"> <br><ion-icon name="information-circle"></ion-icon> the basket will be delivered in your actual position !</p>
               </ion-list>
 
               <ion-row *ngIf="assignmentPayload.action == 'SUBMIT'">
@@ -80,7 +82,7 @@
               </ion-row>
               <ion-row *ngIf="assignmentPayload.action !== 'SUBMIT'">
                         <ion-col col-2>
-                            <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
+                            <button (click)="currentBasket()" ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
                         </ion-col>
                         <ion-col col-5>
                             <button (click)="action()" ion-button color="secondary" style="font-size: 12px;font-weight: bold;float: right">

@@ -33,12 +33,21 @@ export enum Action {
   ADD = 'ADD', UPDATE= 'UPDATE', DELETE= 'DELETE', SUBMIT= 'SUBMIT'
 }
 
+export class Address {
+  details?: string;
+	lat?: number;
+	lng?: number;
+	city?: string;
+	country?: string;
+	postalCode?: string
+}
+
 export class AssignmentPayload {
   idProduct?: number;;
 	quantity?: number;
 	action?: Action;
   submit?: boolean;
-  address?:string;
+  address?:Address;
 }
 
 export class BasketDetails {
@@ -50,7 +59,10 @@ export class BasketDetails {
 	ownerLastName?: string;
   phone?: string;
   ownerRate?: number;
+  totalCost?: number;
   deliveryCost?: number;
+  lat?: number;
+  lng?:number;
   products?: ProductDetails[];
 }
 

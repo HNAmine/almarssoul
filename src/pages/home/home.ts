@@ -48,8 +48,8 @@ export class Home {
     this.initializeApp();
     // set our app's pages
     this.pages = [
-      { title: "Accueil", icon: "home", component: Dashboard },
-      { title: "Mes commandes", icon: "md-list", component: OrdersPage },
+      { title: "Home", icon: "home", component: Dashboard },
+      { title: "My orders", icon: "md-list", component: OrdersPage },
       {
         title: "Panier",
         icon: "ios-basket",

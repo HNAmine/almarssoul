@@ -64,7 +64,7 @@ export class ProductsListComponent {
   }
 
   submitProducts(){
-    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.SUBMIT, showSubmit: true });
+    let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.SUBMIT, showSubmit: true, productsCost: this.basket.totalCost , deliveryCost: this.basket.deliveryCost });
     profileModal.present();
     profileModal.onDidDismiss(data => {
       if(data.loadData){
