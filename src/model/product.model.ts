@@ -9,6 +9,7 @@ export class Product {
   expiredAt?:Date;
   canbeExpired?:boolean;
   enable?:boolean;
+  avatarUri?: string;
 }
 
 export class Assignment {

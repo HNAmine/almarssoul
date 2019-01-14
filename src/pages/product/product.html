@@ -28,7 +28,7 @@
 
 
             <h2 style="font-weight: bold">
-                <img style="width: 20% !important; height: 20% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
+                <img *ngIf="product.avatarUri" style="width: 20% !important; height: 20% !important;" [src]="product.avatarUri"/>
                 {{product.label}}
                 <span style="font-size: 10px" *ngIf="product.description"><i>({{product.description}})</i></span>
             </h2>
