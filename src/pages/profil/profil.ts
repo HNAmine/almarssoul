@@ -26,11 +26,8 @@ export class ProfilPage {
       content: "Please wait..."
     });
     loader.present();
-    this.storage.get(tokenIndex).then((token) => {
-      this.currentUser = this.authentificationService.getCurrentUser(token);
-      this.token = token;
-      loader.dismiss();
-    });
+    this.currentUser = this.authentificationService.getCurrentUser();
+    loader.dismiss();
   }
 
   goToBasketPage(){
@@ -42,12 +39,12 @@ export class ProfilPage {
       content: "Please wait..."
     });
     loader.present();
-    this.authentificationService.updateUserInfo(this.currentUser, this.token).subscribe(payload => {
+    this.authentificationService.updateUserInfo(this.currentUser).subscribe(payload => {
       // set a key/value
       this.storage.remove(tokenIndex);
       this.storage.set(tokenIndex, payload.value);
       loader.dismiss();
-      this.authentificationService.refreshPrincipal(payload.value);
+      this.authentificationService.refreshPrincipal();
       const toast = this.toastCtrl.create({
         message: 'User was updated successfully',
         duration: 3000

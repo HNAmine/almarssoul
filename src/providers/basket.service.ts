@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 
 import { dns, tokenPrefix } from '../app/config';
 import { AssignmentPayload } from '../model/product.model';
+import { AuthentificationService } from './authentification.service';
 
 @Injectable()
 export class BasketService {
   private dns = dns + 'baskets/';
 
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private authentificationService: AuthentificationService) {}
 
   /**
 	 * --------------------------------------------------------------
@@ -19,25 +20,25 @@ export class BasketService {
 	 *
 	 * --------------------------------------------------------------
 	 **/
-  public getCurrentBasket(tokenHash): Observable<any> {
+  public getCurrentBasket(): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    headers = headers.append('Authorization', tokenPrefix + this.authentificationService.token);
     return this._http.get(this.dns + 'current-basket', {
       headers
     });
   }
 
-  public getOrders(tokenHash): Observable<any> {
+  public getOrders(): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    headers = headers.append('Authorization', tokenPrefix + this.authentificationService.token);
     return this._http.get(this.dns + 'orders', {
       headers
     });
   }
 
-  public addNote(basketId , ownerRate, tokenHash): Observable<any> {
+  public addNote(basketId , ownerRate): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    headers = headers.append('Authorization', tokenPrefix + this.authentificationService.token);
     return this._http.get(this.dns + basketId + '/add-note?ownerRate='+ownerRate , {headers});
   }
   /**
@@ -47,9 +48,9 @@ export class BasketService {
 	 *
 	 * --------------------------------------------------------------
 	 **/
-  public assign(assignmentPayload: AssignmentPayload, tokenHash): Observable<any> {
+  public assign(assignmentPayload: AssignmentPayload): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    headers = headers.append('Authorization', tokenPrefix + tokenHash);
+    headers = headers.append('Authorization', tokenPrefix + this.authentificationService.token);
     return this._http.post(this.dns + 'assign', assignmentPayload, {headers});
   }
 

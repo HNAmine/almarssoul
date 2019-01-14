@@ -62,7 +62,7 @@ export class Home {
 
   ionViewDidLoad() {
     this.storage.get(tokenIndex).then((token) => {
-      this.currentUser = this.authentificationService.getCurrentUser(token);
+      this.currentUser = this.authentificationService.getCurrentUser();
       this.getTrigram(this.currentUser.firstName, this.currentUser.lastName);
     });
 

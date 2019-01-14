@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { BasketService } from '../../providers/basket.service';
-import { tokenIndex } from '../../app/config';
-import { Storage } from '@ionic/storage';
 import { LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { AssignmentPayload, Action, BasketDetails, ProductDetails } from '../../model/product.model';
 import { ProductModal } from '../../pages/product/product-modal';
@@ -18,18 +16,14 @@ import { ProductModal } from '../../pages/product/product-modal';
 })
 export class ProductsListComponent {
 
-  token = null;
   basket: BasketDetails = {};
   assignmentPayload:AssignmentPayload = {quantity: 1};
 
-  constructor(private basketService:BasketService, private storage: Storage,
+  constructor(private basketService:BasketService,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public modalCtrl: ModalController) {
-    this.storage.get(tokenIndex).then((token) => {
-      this.token = token;
       this.loadCurrentBasket();
-    });
   }
 
   loadCurrentBasket(){
@@ -37,7 +31,7 @@ export class ProductsListComponent {
       content: "Please wait..."
     });
     loader.present();
-    this.basketService.getCurrentBasket(this.token).subscribe(basket => {
+    this.basketService.getCurrentBasket().subscribe(basket => {
       this.basket = basket;
       loader.dismiss();
     }, ()=> {

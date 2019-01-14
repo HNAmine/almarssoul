@@ -27,7 +27,6 @@ export class UserLogin {
   ) {}
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad UserLogin");
   }
 
   homePage() {
@@ -46,7 +45,10 @@ export class UserLogin {
     loader.present();
       this.authentificationService.signin(this.credential).subscribe((token:Value<string>) => {
 
-        if(this.authentificationService.isClient(token.value)) {
+        this.authentificationService.token = token.value;
+
+        if(this.authentificationService.isClient()) {
+
          // set a key/value
          this.storage.set(tokenIndex, token.value);
          loader.dismiss();

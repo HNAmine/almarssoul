@@ -25,8 +25,6 @@ export class ProductPage {
     content: "Please wait..."
   });
 
-  token = null;
-
   pageable = {search: '', page: 0, size: 10, sort: ''};
 
   totalPages: number = 0;
@@ -44,10 +42,7 @@ export class ProductPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get(tokenIndex).then((token) => {
-      this.token = token;
       this.loadProductsOfCategory();
-    });
   }
 
   loadProductsOfCategory(){
@@ -55,7 +50,7 @@ export class ProductPage {
       content: "Please wait..."
     });
     loader.present();
-    this.productService.getProductsByCategory(this.category.id, this.pageable , this.token).subscribe(payload => {
+    this.productService.getProductsByCategory(this.category.id, this.pageable).subscribe(payload => {
       this.products.push(...payload.content);
       loader.dismiss();
       this.totalPages = payload.totalPages;

@@ -9,8 +9,6 @@ import {
   ModalController,
   ViewController
 } from "ionic-angular";
-import { Storage } from '@ionic/storage';
-import { tokenIndex } from '../../app/config';
 import { BasketService } from '../../providers/basket.service';
 import { BasketDetails } from '../../model/product.model';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
@@ -27,7 +25,6 @@ import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-na
 })
 export class OrdersPage {
 
-  token = null;
   baskets:BasketDetails[] = [];
   loading = false;
 
@@ -36,7 +33,6 @@ export class OrdersPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
-    private storage: Storage,
     public loadingCtrl: LoadingController,
     private basketService:BasketService,
     public modalCtrl: ModalController,
@@ -45,10 +41,7 @@ export class OrdersPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get(tokenIndex).then((token) => {
-      this.token = token;
       this.loadOrders();
-    });
   }
 
   goToBasketPage(){
@@ -61,7 +54,7 @@ export class OrdersPage {
       content: "Please wait..."
     });
     loader.present();
-    this.basketService.getOrders(this.token).subscribe((baskets:BasketDetails[])=> {
+    this.basketService.getOrders().subscribe((baskets:BasketDetails[])=> {
         this.baskets = baskets;
         loader.dismiss();
         this.loading = false;
@@ -137,7 +130,7 @@ export class OrdersPage {
           content: "Please wait..."
         });
         loader.present();
-        this.basketService.addNote(basket.id, data, this.token).subscribe(succes => {
+        this.basketService.addNote(basket.id, data).subscribe(succes => {
           loader.dismiss();
           basket.ownerRate = data;
         }, (err)=> {

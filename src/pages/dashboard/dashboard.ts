@@ -4,8 +4,6 @@ import { Component } from "@angular/core";
 import { LoadingController, NavController, NavParams } from "ionic-angular";
 
 import { StoreService } from '../../providers/store.service';
-import { tokenIndex } from '../../app/config';
-import { Storage } from '@ionic/storage';
 import { Store } from '../../model/store.model';
 import { Category } from '../../model/category.model';
 import { CategoryPage } from '../category/category';
@@ -25,7 +23,6 @@ export class Dashboard {
     content: "Please wait..."
   });
   pageable = {search: '', page: 0, size: 5, sort: ''};
-  token = null;
   stores :Store[] = [];
   totalPages: number = 0;
   loading = false;
@@ -33,17 +30,13 @@ export class Dashboard {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    private storage: Storage,
     private storeService: StoreService
   ) {
 
   }
 
   ionViewDidLoad() {
-    this.storage.get(tokenIndex).then((token) => {
-      this.token = token;
       this.loadStores();
-    });
   }
 
   loadStores(){
@@ -52,7 +45,7 @@ export class Dashboard {
       content: "Please wait..."
     });
     loader.present();
-    this.storeService.getStores(this.pageable , this.token).subscribe(payload => {
+    this.storeService.getStores(this.pageable).subscribe(payload => {
       this.stores.push(...payload.content);
       loader.dismiss();
       this.totalPages = payload.totalPages;

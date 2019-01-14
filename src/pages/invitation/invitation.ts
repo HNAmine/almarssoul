@@ -14,7 +14,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 })
 export class InvitationPage {
   mode: string = "ADD";
-  token = null;
   invitations:Invitation[] = [];
   phone: string;
   constructor(
@@ -29,10 +28,7 @@ export class InvitationPage {
   }
 
   ionViewDidLoad() {
-    this.storage.get(tokenIndex).then((token) => {
-      this.token = token;
       this.loadInvitation();
-    });
   }
 
   goToBasketPage(){
@@ -44,7 +40,7 @@ export class InvitationPage {
       content: "Please wait..."
     });
     loader.present();
-    this.authentificationService.getInvitation(this.token).subscribe(invitations => {
+    this.authentificationService.getInvitation().subscribe(invitations => {
         this.invitations = invitations;
         loader.dismiss();
     }, () => {
@@ -65,8 +61,7 @@ export class InvitationPage {
       content: "Please wait..."
     });
     loader.present();
-    this.storage.get(tokenIndex).then((token) => {
-      this.authentificationService.invite(this.phone, token).subscribe((invitation: Invitation) => {
+      this.authentificationService.invite(this.phone).subscribe((invitation: Invitation) => {
         loader.dismiss();
         this.phone = null;
         const toast = this.toastCtrl.create({
@@ -81,7 +76,6 @@ export class InvitationPage {
         loader.dismiss();
         throw err;
       })
-  });
   }
 
   getMessageFromInvitation(invitation: Invitation){

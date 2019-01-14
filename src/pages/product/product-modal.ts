@@ -2,8 +2,6 @@ import { NavParams, ViewController, LoadingController, ToastController, AlertCon
 import { Component } from "@angular/core";
 import { AssignmentPayload, Action, ProductDetails } from "../../model/product.model";
 import { BasketService } from "../../providers/basket.service";
-import { Storage } from '@ionic/storage';
-import { tokenIndex } from "../../app/config";
 import { Geolocation } from '@ionic-native/geolocation';
 import { BasketPage } from "../basket/basket";
 
@@ -15,13 +13,12 @@ import { BasketPage } from "../basket/basket";
   
    product:ProductDetails = {};
    assignmentPayload:AssignmentPayload = {quantity: 1};
-   token = null;
    showSubmit:boolean = true;
    useCurrentPosition:boolean = true;
    productsCost: number;
    deliveryCost: number;
 
-   constructor(private basketService:BasketService, params: NavParams, private storage: Storage, public viewCtrl: ViewController,
+   constructor(private basketService:BasketService, params: NavParams, public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,     public navCtrl: NavController,
     private geolocation: Geolocation, private alertCtrl: AlertController) {
@@ -96,10 +93,7 @@ import { BasketPage } from "../basket/basket";
     });
 
     loader.present();
-
-    this.storage.get(tokenIndex).then((token) => {
-    this.token = token;
-    this.basketService.assign(this.assignmentPayload, this.token).subscribe(()=> {
+    this.basketService.assign(this.assignmentPayload).subscribe(()=> {
       loader.dismiss();
       const toast = this.toastCtrl.create({
         message: 'Action was done successfully',
@@ -112,7 +106,6 @@ import { BasketPage } from "../basket/basket";
         this.viewCtrl.dismiss({loadData: false});
         throw err;
       });
-    });
   }
 
   currentBasket(){
