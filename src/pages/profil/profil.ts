@@ -41,6 +41,7 @@ export class ProfilPage {
     loader.present();
     this.authentificationService.updateUserInfo(this.currentUser).subscribe(payload => {
       // set a key/value
+      this.authentificationService.token = payload.value;
       this.storage.remove(tokenIndex);
       this.storage.set(tokenIndex, payload.value);
       loader.dismiss();

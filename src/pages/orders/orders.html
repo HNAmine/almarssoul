@@ -15,7 +15,19 @@
 
   <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
+
+        <ion-list *ngIf="basket.deliveryFirstName">
+            <ion-item>
+              <ion-avatar item-start>
+                <img *ngIf="basket.deliveryAvatarUri" [src]="basket.deliveryAvatarUri">
+              </ion-avatar>
+              <h2 style="color: black; font-weight: bold">{{basket?.deliveryFirstName}} {{basket?.deliveryLastName}} <ion-icon *ngIf="basket.deliveryPhone" name="md-call" class="call" (click)="callOwner(basket.deliveryPhone)"></ion-icon></h2>
+              <p>{{basket?.deliveryPhone}}</p>
+            </ion-item>
+        </ion-list>
+
       <ion-card-title>
+
         <h2 style="font-weight: bold">{{basket.doneAt |  date: 'MM/dd/yy'}} 
 
           <ion-badge *ngIf="basket.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>Submitted</ion-badge>
@@ -24,7 +36,6 @@
           <ion-badge *ngIf="basket.state === 'COMPLETED'" style="float: right;background-color: green" item-end>Completed</ion-badge>
 
         </h2>
-        
       </ion-card-title>
 
       <hr>

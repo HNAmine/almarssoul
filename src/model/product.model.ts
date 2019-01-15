@@ -64,6 +64,10 @@ export class BasketDetails {
   deliveryCost?: number;
   lat?: number;
   lng?:number;
+  deliveryFirstName?: string;
+	deliveryLastName?: string;
+	deliveryPhone?: string;
+	deliveryAvatarUri?: string;
   products?: ProductDetails[];
 }
 
