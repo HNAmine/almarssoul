@@ -16,15 +16,15 @@
   <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
 
-        <ion-list *ngIf="basket.deliveryFirstName">
-            <ion-item>
-              <ion-avatar item-start>
-                <img *ngIf="basket.deliveryAvatarUri" [src]="basket.deliveryAvatarUri">
-              </ion-avatar>
-              <h2 style="color: black; font-weight: bold">{{basket?.deliveryFirstName}} {{basket?.deliveryLastName}} <ion-icon *ngIf="basket.deliveryPhone" name="md-call" class="call" (click)="callOwner(basket.deliveryPhone)"></ion-icon></h2>
-              <p>{{basket?.deliveryPhone}}</p>
-            </ion-item>
-        </ion-list>
+      <ion-item *ngIf="basket.deliveryFirstName">
+        <ion-avatar item-start>
+          <img *ngIf="basket.deliveryAvatarUri" [src]="basket.deliveryAvatarUri">
+          <ion-icon *ngIf="!basket.deliveryAvatarUri" name="ios-more"></ion-icon>
+        </ion-avatar>
+        <h2 style="color: black; font-weight: bold;margin: 0px !important;">{{basket?.deliveryFirstName}} {{basket?.deliveryLastName}}</h2>
+        <p>{{basket?.deliveryPhone}}</p>
+        <ion-icon *ngIf="basket.deliveryPhone" name="md-call" class="call" (click)="callOwner(basket.deliveryPhone)"></ion-icon>
+      </ion-item>
 
       <ion-card-title>
 
@@ -37,6 +37,8 @@
 
         </h2>
       </ion-card-title>
+
+
 
       <hr>
 
