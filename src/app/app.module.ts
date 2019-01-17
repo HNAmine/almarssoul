@@ -32,6 +32,9 @@ import { UserInvited } from '../pages/user-invited/user-invited';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { NotificationPage } from '../pages/notification/notification';
+import { NotificationService } from '../providers/notification.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     ProductsListComponent,
     OrderModal,
     InvitationPage,
-    UserInvited
+    UserInvited,
+    NotificationPage
   ],
   imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()],
@@ -70,7 +74,8 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     ProductModal,
     OrderModal,
     InvitationPage,
-    UserInvited
+    UserInvited,
+    NotificationPage
   ],
   providers: [
     StatusBar,
@@ -88,7 +93,9 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     {
       provide: ErrorHandler,
       useClass: ErrorsHandler
-    }
+    },
+    LocationAccuracy,
+    NotificationService
   ]
 })
 export class AppModule {}

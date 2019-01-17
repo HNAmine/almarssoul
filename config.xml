@@ -98,4 +98,5 @@
         <variable name="OKHTTP_VERSION" value="3.+" />
     </plugin>
     <engine name="android" spec="7.1.1" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="2.2.3" />
 </widget>

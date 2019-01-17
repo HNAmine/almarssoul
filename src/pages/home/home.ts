@@ -14,6 +14,7 @@ import { tokenIndex } from '../../app/config';
 import { AuthentificationService } from '../../providers/authentification.service';
 import { User } from '../../model/authentification.model';
 import { InvitationPage } from '../invitation/invitation';
+import { NotificationPage } from '../notification/notification';
 
 /**
  * Generated class for the Dashboard page.
@@ -56,6 +57,7 @@ export class Home {
         component: BasketPage
       },
       { title: "Invite", icon: "md-mail", component: InvitationPage },
+      { title: "Notification", icon: "md-notifications", component: NotificationPage },
       { title: "Profile", icon: "md-person", component: ProfilPage }
     ];
   }
