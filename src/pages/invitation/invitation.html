@@ -44,6 +44,9 @@
     </ion-list>
 
       <ion-list *ngSwitchCase="'LIST'">
+
+        <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="invitations && invitations.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no invitations</h6>
+
         <ion-item *ngFor="let invitation of invitations">
           <ion-avatar item-start>
             <ion-icon *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" name="md-mail"></ion-icon>

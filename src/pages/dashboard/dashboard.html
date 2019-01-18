@@ -22,9 +22,8 @@
 
     <h4 style="text-align: center" *ngIf="!loading && stores.length === 0"><ion-icon name="ios-warning-outline"></ion-icon> No result found !</h4>
     <ion-card *ngFor="let store of stores" (click)="goToStoreDetails(store)">
-      <!-- [ngClass]="{'disabled':!store.enable}" -->
       <img [src]="store.avatarUri"/>
-      <div class="card-title" style="color: black !important">{{store.label}}</div>
+      <div class="card-title" style="color: black !important">{{store.label}} <span style="font-size: 14px">({{store.code}})</span></div>
       <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
       <div class="card-badge" *ngIf="store.categories && store.categories.length > 0"><span class="w3-badge w3-green">{{getCategoriesLabel(store.categories)}}</span></div>
     </ion-card>

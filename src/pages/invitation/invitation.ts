@@ -4,7 +4,6 @@ import { BasketPage } from "../basket/basket";
 import { AuthentificationService } from "../../providers/authentification.service";
 import { Invitation } from "../../model/authentification.model";
 import { Storage } from '@ionic/storage';
-import { tokenIndex } from "../../app/config";
 import { SMS } from '@ionic-native/sms';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -19,7 +18,6 @@ export class InvitationPage {
   constructor(
     public loadingCtrl: LoadingController,
     public navCtrl: NavController,
-    private storage: Storage,
     private authentificationService: AuthentificationService,
     public toastCtrl: ToastController,
     private sms: SMS,

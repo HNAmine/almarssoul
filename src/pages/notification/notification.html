@@ -14,6 +14,8 @@
 
   <h5 style="font-weight: bold;"> <ion-icon name="md-notifications"></ion-icon> Notifications </h5>
 
+  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="notifications && notifications.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no notification</h6>
+
   <ion-list>
     <ion-item *ngFor="let notification of notifications" [ngClass]="{'unreaded-notification' : !notification.readed}" (click)="readNotification(notification)">
       <h2 style="color:black;font-weight: bold">{{notification.label}}</h2>

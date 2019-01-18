@@ -4,8 +4,6 @@ import { NavController, NavParams, LoadingController, ModalController } from "io
 import { Product, Action, ProductDetails } from "../../model/product.model";
 import { Store } from '../../model/store.model';
 import { Category } from '../../model/category.model';
-import { Storage } from '@ionic/storage';
-import { tokenIndex } from '../../app/config';
 import { ProductService } from '../../providers/product.service';
 import { ProductModal } from './product-modal';
 
@@ -33,7 +31,6 @@ export class ProductPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    private storage: Storage,
     public modalCtrl: ModalController,
     private productService: ProductService
   ) {

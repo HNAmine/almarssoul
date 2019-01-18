@@ -47,10 +47,14 @@ export class UserLogin {
 
         this.authentificationService.token = token.value;
 
+        this.authentificationService.refreshPrincipal();
+
         if(this.authentificationService.isClient()) {
 
          // set a key/value
          this.storage.set(tokenIndex, token.value);
+
+         
          loader.dismiss();
          this.homePage();
         } else {

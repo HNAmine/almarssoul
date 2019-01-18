@@ -43,6 +43,8 @@ export class UserInvited {
     loader.present();
     this.authentificationService.acceptInvitation(this.invited).subscribe((token:Value<string>) => {
           this.storage.set(tokenIndex, token.value);
+          this.authentificationService.token = token.value;
+          this.authentificationService.refreshPrincipal();
           loader.dismiss();
           this.homePage();
         }, (err)=> {
