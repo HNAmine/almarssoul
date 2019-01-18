@@ -72,50 +72,41 @@ export class OrdersPage {
   showInMap(basket: BasketDetails){
     let options: LaunchNavigatorOptions = {
       // app: LaunchNavigator.APPS.USER_SELECT
+    };
 
-  };
-
-  this.launchNavigator.navigate([basket.lat, basket.lng], options)
-  .then(
-      success => console.log('Launched navigator'),
-      error => console.log('Error launching navigator', error)
-  );
+    this.launchNavigator.navigate([basket.lat, basket.lng], options).then(
+        success => console.log('Launched navigator'),
+        error => console.log('Error launching navigator', error)
+    );
   }
 
   addNote(basket : BasketDetails){
-
     let alert = this.alertCtrl.create();
-
     alert.setTitle('Note');
-
     alert.addInput({
       type: 'radio',
       label: 'VERY GOOD',
       value: '5',
       checked: basket.ownerRate === 5
     });
-
     alert.addInput({
       type: 'radio',
       label: 'GOOD',
       value: '4',
       checked: basket.ownerRate === 4
     });
-
     alert.addInput({
       type: 'radio',
       label: 'MOYEN',
       value: '3',
       checked: basket.ownerRate === 3
     });
-
     alert.addInput({
       type: 'radio',
       label: 'NOT BAD',
       value: '2',
       checked: basket.ownerRate === 2
     });
-
     alert.addInput({
       type: 'radio',
       label: 'BAD',

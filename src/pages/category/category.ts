@@ -1,6 +1,6 @@
 import { BasketPage } from './../basket/basket';
 import { Component } from "@angular/core";
-import { NavController, NavParams, LoadingController, ModalController } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
 import { Store } from '../../model/store.model';
 import { ProductPage } from '../product/product';
 import { Category } from '../../model/category.model';
@@ -12,29 +12,11 @@ import { Category } from '../../model/category.model';
 export class CategoryPage {
   store: Store = null;
 
-  loader = this.loadingCtrl.create({
-    content: "Please wait..."
-  });
-
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController
+    public navParams: NavParams
   ) {
     this.store = navParams.get("data");
-  }
-
-  onNavigate(url: string) {
-    window.open(url, "_blank");
-  }
-
-  presentLoading() {
-    this.loader.present();
-  }
-
-  dismissLoading() {
-    this.loader.dismiss();
   }
 
   goToBasketPage(){

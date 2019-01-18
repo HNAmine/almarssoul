@@ -19,5 +19,3 @@ export interface Pageable {
   search: string;
   sort?: string;
 }
-
-export let DEFAULT_PAGEABLE = {search: '', page: 0, size: 2, sort: ''};

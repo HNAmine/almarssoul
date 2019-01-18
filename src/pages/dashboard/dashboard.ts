@@ -19,20 +19,18 @@ import { CategoryPage } from '../category/category';
   templateUrl: "dashboard.html"
 })
 export class Dashboard {
-  loader = this.loadingCtrl.create({
-    content: "Please wait..."
-  });
+
   pageable = {search: '', page: 0, size: 5, sort: ''};
   stores :Store[] = [];
   totalPages: number = 0;
   loading = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     private storeService: StoreService
   ) {
-
   }
 
   ionViewDidLoad() {

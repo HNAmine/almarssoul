@@ -98,36 +98,4 @@ export class AuthentificationService {
     return this._http.put(this.dns + 'update/user-info', user, {headers});
   }
 
-  /**
-	 * --------------------------------------------------------------
-	 *
-	 * GET CALLS
-	 *
-	 * --------------------------------------------------------------
-	 **/
-  // public forgetCredentials(email: string): Observable<any> {
-  //   let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   headers = createAcceptLanguageHeader(headers);
-  //   return this._http.get(this.dns + 'forgetcredentials/' + email, {
-  //      headers
-  //   });
-  // }
-
-
-
-
-
-  // public updateUserPassword(payload: PasswordConfirmation): Observable<any> {
-  //   return this._http.put(this.dns + 'update/user-password', payload);
-  // }
-  /**
-	 * --------------------------------------------------------------
-	 *
-	 * DELETE CALLS
-	 *
-	 * --------------------------------------------------------------
-	 **/
-  // public deleteDevice(id: number): Observable<any> {
-  //   return this._http.delete(environment.dns + 'devices/' + id);
-  // }
 }

@@ -3,8 +3,7 @@ import { NavController, LoadingController, ToastController } from "ionic-angular
 import { BasketPage } from "../basket/basket";
 import { AuthentificationService } from "../../providers/authentification.service";
 import { Invitation } from "../../model/authentification.model";
-import { Storage } from '@ionic/storage';
-import { SMS } from '@ionic-native/sms';
+// import { SMS } from '@ionic-native/sms';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
@@ -20,7 +19,7 @@ export class InvitationPage {
     public navCtrl: NavController,
     private authentificationService: AuthentificationService,
     public toastCtrl: ToastController,
-    private sms: SMS,
+    // private sms: SMS,
     private socialSharing: SocialSharing
   ) {
   }
@@ -66,7 +65,7 @@ export class InvitationPage {
           message: 'well sent invitation',
           duration: 3000
         });
-        this.sms.send(invitation.phone, this.getMessageFromInvitation(invitation));
+        // this.sms.send(invitation.phone, this.getMessageFromInvitation(invitation));
         this.whatsAppNotify(invitation);
         toast.present();
         this.loadInvitation();

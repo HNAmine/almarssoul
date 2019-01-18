@@ -13,14 +13,6 @@ import { UserInvited } from '../user-invited/user-invited';
 })
 export class Authentification {
 
-  displayName: any;
-  email: any;
-  familyName: any;
-  givenName: any;
-  userId: any;
-  imageUrl: any;
-  isLoggedIn:boolean = false;
-  err;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -38,23 +30,14 @@ export class Authentification {
   loginGoogle(){
     this.googlePlus.login({}).then(
       res => {
-        this.displayName = res.displayName;
-        this.email = res.email;
-        this.familyName = res.familyName;
-        this.givenName = res.givenName;
-        this.userId = res.userId;
-        this.imageUrl = res.imageUrl;
-
-        this.isLoggedIn = true;
         const toast = this.toastCtrl.create({
-          message: 'User information '+this.displayName + this.email + this.familyName + this.givenName + this.userId + this.imageUrl,
+          message: 'User information '+res.displayName + res.email + res.familyName + res.givenName + res.userId + res.imageUrl,
           duration: 3000
         });
         toast.present();
         }).catch(err => {
-        this.err = err;
         const toast = this.toastCtrl.create({
-          message: 'Err '+ this.err,
+          message: 'Err '+ err,
           duration: 3000
         });
         toast.present();

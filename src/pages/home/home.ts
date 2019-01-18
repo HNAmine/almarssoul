@@ -5,16 +5,14 @@ import { Authentification } from './../authentification/authentification';
 
 import { Component, ViewChild } from "@angular/core";
 import { Platform, MenuController, Nav, NavController } from "ionic-angular";
-// import { UserLogin } from '../pages/user-login/user-login';
 import { Dashboard } from "../dashboard/dashboard";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
-import { Storage } from '@ionic/storage';
-import { tokenIndex } from '../../app/config';
 import { AuthentificationService } from '../../providers/authentification.service';
 import { User } from '../../model/authentification.model';
 import { InvitationPage } from '../invitation/invitation';
 import { NotificationPage } from '../notification/notification';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 /**
  * Generated class for the Dashboard page.
@@ -43,8 +41,8 @@ export class Home {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public navCtrl: NavController,
-    private storage: Storage,
-    private authentificationService: AuthentificationService
+    private authentificationService: AuthentificationService,
+    private locationAccuracy: LocationAccuracy
   ) {
     this.initializeApp();
     // set our app's pages
@@ -63,10 +61,8 @@ export class Home {
   }
 
   ionViewDidLoad() {
-    this.storage.get(tokenIndex).then((token) => {
       this.currentUser = this.authentificationService.getCurrentUser();
       this.getTrigram(this.currentUser.firstName, this.currentUser.lastName);
-    });
 
     this.authentificationService.activeUser.subscribe((_user)=>{
       this.currentUser = _user;
@@ -87,6 +83,17 @@ export class Home {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+
+        if(canRequest) {
+          // the accuracy option will be ignored by iOS
+          this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+            () => console.log('Request successful'),
+            error => console.log('Error requesting location permissions', error)
+          );
+        }
+      
+      });
     });
   }
 
