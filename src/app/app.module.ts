@@ -18,7 +18,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { FormsModule } from "@angular/forms";
 import { AuthentificationService } from '../providers/authentification.service';
 import { ErrorsHandler } from './errors.handler';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { StoreService } from '../providers/store.service';
 import { CategoryPage } from '../pages/category/category';
@@ -35,6 +35,13 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { NotificationPage } from '../pages/notification/notification';
 import { NotificationService } from '../providers/notification.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LangManagerComponent } from '../components/lang-manager/lang-manager';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -54,9 +61,16 @@ import { NotificationService } from '../providers/notification.service';
     OrderModal,
     InvitationPage,
     UserInvited,
-    NotificationPage
+    NotificationPage,
+    LangManagerComponent
   ],
-  imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),
+  imports: [BrowserModule, HttpClientModule,FormsModule,IonicModule.forRoot(MyApp),TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [HttpClient]
+    }
+  }),
     IonicStorageModule.forRoot()],
   bootstrap: [IonicApp],
   entryComponents: [

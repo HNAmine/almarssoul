@@ -27,15 +27,16 @@
         <ion-card>
             <ion-list *ngIf="assignmentPayload.action !== 'SUBMIT'">
                 <ion-item>
-                  <ion-avatar item-start>
+                  <!-- <ion-avatar item-start>
                       <img style="border-radius: 0px !important;overflow: hidden;width: 80px;height: 80px;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
-                  </ion-avatar>
+                  </ion-avatar> -->
                   <h1>{{product?.productLabel}}</h1>
                   <h3>{{product?.productDescription}}</h3>
                   <h4 style="font-weight: bold">{{product?.productCost}} x {{assignmentPayload?.quantity}} = {{product?.productCost * assignmentPayload?.quantity}}</h4>
                 </ion-item>
             </ion-list>
 
+            
             <ion-card-content>
 
               <ng-container *ngIf="assignmentPayload.action !== 'SUBMIT'">

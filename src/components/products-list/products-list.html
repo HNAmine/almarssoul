@@ -2,10 +2,10 @@
 <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="basket.products && basket.products.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no product in current basket</h6>
 <ion-grid style="border: 1px solid" style="font-size: 10px;padding: 0px !important" *ngIf="basket.products && basket.products.length > 0">
   <ion-row style="border: 1px solid;background-color: #00abec;">
-    <ion-col col-2 style="font-weight: bold">
+    <!-- <ion-col col-2 style="font-weight: bold">
       Avatar
-    </ion-col>
-    <ion-col col-2 style="font-weight: bold">
+    </ion-col> -->
+    <ion-col col-3 style="font-weight: bold">
       Label
     </ion-col>
     <ion-col col-2 style="font-weight: bold">
@@ -17,16 +17,16 @@
     <ion-col col-2 style="font-weight: bold;text-align: center">
       T.Cost
     </ion-col>
-    <ion-col col-2 style="font-weight: bold;text-align: center">
+    <ion-col col-3 style="font-weight: bold;text-align: center">
         
     </ion-col>
   </ion-row>
 
   <ion-row *ngFor="let product of basket.products">
-    <ion-col col-2 (click)="updateProduct(product)">
+    <!-- <ion-col col-2 (click)="updateProduct(product)">
           <img style="width: 100% !important; height: 100% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>  
-    </ion-col>
-    <ion-col col-2 (click)="updateProduct(product)">  
+    </ion-col> -->
+    <ion-col col-3 (click)="updateProduct(product)">  
       {{product?.productLabel}}
     </ion-col>
     <ion-col col-2 (click)="updateProduct(product)">
@@ -38,7 +38,7 @@
     <ion-col col-2 style="text-align: center" (click)="updateProduct(product)">
       {{product.totalCost}}
     </ion-col>
-    <ion-col col-2 style="text-align: center" (click)="deleteProduct(product)">
+    <ion-col col-3 style="text-align: center" (click)="deleteProduct(product)">
         <ion-icon name="md-trash" style="color: brown;"></ion-icon>
     </ion-col>
   </ion-row>
