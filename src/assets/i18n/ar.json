@@ -1,3 +1,11 @@
 {
-    "HELLO": "Salam"
+    "modules": {
+      "home": "الصفحة الرئيسية",
+      "orders": "طلباتي",
+      "basket": "سلة",
+      "invite": "رسالة دعوة",
+      "notification": "إعلام",
+      "profile": "الملف الشخصي",
+      "logout": "تسجيل الخروج"
+    }
 }

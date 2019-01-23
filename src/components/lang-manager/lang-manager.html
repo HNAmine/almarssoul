@@ -1,19 +1,4 @@
-<!-- <ion-select>
-    <ion-option *ngFor="let cc of currencyList" value="{{ cc }}">
-        <span class="flag-icon flag-icon-gr"></span>
-        <img src="https://image.flaticon.com/icons/svg/206/206657.svg" alt="">
-        {{ cc }}
-    </ion-option>
-  </ion-select>
 
-  <span class="flag-icon flag-icon-gr"></span> -->
-
-
-  <!-- <ion-item> -->
-      <!-- <ion-label>Lang</ion-label> -->
-      <ion-select [(ngModel)]="notifications" interface="action-sheet">
-        <ion-option value="enable">Arabe</ion-option>
-        <ion-option value="mute">Français <span class="flag-icon flag-icon-gr"></span> </ion-option>
-        <ion-option value="mute_week">Anglais <img src="https://image.flaticon.com/icons/svg/206/206657.svg" alt=""> </ion-option>
-      </ion-select>
-    <!-- </ion-item> -->
+<ion-select [(ngModel)]="currentLang" interface="action-sheet" (ionChange)="onSetLang()" cancelText="">
+        <ion-option *ngFor="let lang of langs" [value]="lang.value">{{lang.label}}</ion-option>
+</ion-select>

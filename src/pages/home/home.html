@@ -18,6 +18,7 @@
               <p><i>{{ currentUser?.phone }}</i></p>
 
             </ion-item>
+
             <lang-manager></lang-manager>
 
           </ion-toolbar>
@@ -27,11 +28,11 @@
   <ion-content>
     <ion-list no-lines>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)" style="font-weight: bold">
-        <ion-icon name="{{p?.icon}}"></ion-icon> {{ p.title }}
+        <ion-icon name="{{p?.icon}}"></ion-icon> {{ p.title | translate}}
       </button>
 
       <button ion-item (click)="logout()" style="font-weight: bold">
-        <ion-icon name="md-power"></ion-icon> Logout
+        <ion-icon name="md-power"></ion-icon> {{modules.logout | translate}}
       </button>
     </ion-list>
 

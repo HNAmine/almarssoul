@@ -47,16 +47,16 @@ export class Home {
     this.initializeApp();
     // set our app's pages
     this.pages = [
-      { title: "Home", icon: "home", component: Dashboard },
-      { title: "My orders", icon: "md-list", component: OrdersPage },
+      { title: "modules.home", icon: "home", component: Dashboard },
+      { title: "modules.orders", icon: "md-list", component: OrdersPage },
       {
-        title: "Panier",
+        title: "modules.basket",
         icon: "ios-basket",
         component: BasketPage
       },
-      { title: "Invite", icon: "md-mail", component: InvitationPage },
-      { title: "Notification", icon: "md-notifications", component: NotificationPage },
-      { title: "Profile", icon: "md-person", component: ProfilPage }
+      { title: "modules.invite", icon: "md-mail", component: InvitationPage },
+      { title: "modules.notification", icon: "md-notifications", component: NotificationPage },
+      { title: "modules.profile", icon: "md-person", component: ProfilPage }
     ];
   }
 

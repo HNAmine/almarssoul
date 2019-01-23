@@ -1,3 +1,11 @@
 {
-    "HELLO": "Salut"
+    "modules": {
+      "home": "Acceuil",
+      "orders": "Mes orders",
+      "basket": "Paner",
+      "invite": "Inviter",
+      "notification": "Notification",
+      "profile": "Profile",
+      "logout": "Déconnexion"
+    }
 }

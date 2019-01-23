@@ -1,3 +1,11 @@
 {
-    "HELLO": "Hello"
-  }
+    "modules": {
+      "home": "Home",
+      "orders": "My orders",
+      "basket": "Basket",
+      "invite": "Invite",
+      "notification": "Notification",
+      "profile": "Profile",
+      "logout": "Logout"
+    }
+}
