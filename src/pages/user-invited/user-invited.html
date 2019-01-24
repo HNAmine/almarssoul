@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar hideBackButton="false">
     <ion-title text-center>
-      <ion-icon name="md-mail"></ion-icon> Invited
+      <ion-icon name="md-mail"></ion-icon> {{"account.invited" | translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,7 +16,7 @@
       <ion-list no-lines padding-top>
 
         <ion-item>
-              <ion-label floating style="color: black;font-weight: bold">Phone <span class="required">(*)</span></ion-label>
+              <ion-label floating style="color: black;font-weight: bold">{{"fields.phone" | translate}} <span class="required">(*)</span></ion-label>
               <ion-input
                 type="text"
                 [(ngModel)]="invited.phone"
@@ -28,7 +28,7 @@
           </ion-item>
 
           <ion-item>
-              <ion-label floating style="color: black;font-weight: bold">Validation code <span class="required">(*)</span></ion-label>
+              <ion-label floating style="color: black;font-weight: bold">{{"fields.validation_code" | translate}} <span class="required">(*)</span></ion-label>
               <ion-input
                 type="text"
                 [(ngModel)]="invited.validationCode"
@@ -38,7 +38,7 @@
           </ion-item>
 
           <ion-item>
-              <ion-label floating style="color: black;font-weight: bold">First name <span class="required">(*)</span></ion-label>
+              <ion-label floating style="color: black;font-weight: bold">{{"fields.first_name" | translate}} <span class="required">(*)</span></ion-label>
               <ion-input
                 type="text"
                 [(ngModel)]="invited.firstName"
@@ -50,7 +50,7 @@
           </ion-item>
 
           <ion-item>
-              <ion-label floating style="color: black;font-weight: bold">Last name</ion-label>
+              <ion-label floating style="color: black;font-weight: bold">{{"fields.last_name" | translate}} </ion-label>
               <ion-input
                 type="text"
                 [(ngModel)]="invited.lastName"
@@ -61,7 +61,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-label floating style="color: black;font-weight: bold">Password <span class="required">(*)</span></ion-label>
+            <ion-label floating style="color: black;font-weight: bold">{{"fields.password" | translate}} <span class="required">(*)</span></ion-label>
             <ion-input
               type="password"
               [(ngModel)]="invited.password"
@@ -74,7 +74,7 @@
       </ion-list>
 
       <button ion-button block round color="secondary" (click)="register()" [disabled]="!form.valid">
-        Register
+        {{"fields.register" | translate}}
       </button>
 
     </form>

@@ -16,7 +16,7 @@
     <ion-list no-lines padding-top>
 
         <ion-item>
-            <ion-label floating style="color: black;font-weight: bold">Phone <span class="required">(*)</span></ion-label>
+            <ion-label floating style="color: black;font-weight: bold">{{"fields.phone" | translate}} <span class="required">(*)</span></ion-label>
             <ion-input
               type="text"
               [(ngModel)]="currentUser.phone"
@@ -28,7 +28,7 @@
         </ion-item>
 
         <ion-item>
-            <ion-label floating style="color: black;font-weight: bold">First name <span class="required">(*)</span></ion-label>
+            <ion-label floating style="color: black;font-weight: bold">{{"fields.first_name" | translate}} <span class="required">(*)</span></ion-label>
             <ion-input
               type="text"
               [(ngModel)]="currentUser.firstName"
@@ -40,7 +40,7 @@
         </ion-item>
 
         <ion-item>
-            <ion-label floating style="color: black;font-weight: bold">Last name </ion-label>
+            <ion-label floating style="color: black;font-weight: bold">{{"fields.last_name" | translate}} </ion-label>
             <ion-input
               type="text"
               [(ngModel)]="currentUser.lastName"
@@ -62,7 +62,7 @@
         </ion-item> -->
 
         <ion-item>
-            <ion-label floating style="color: black;font-weight: bold">Email</ion-label>
+            <ion-label floating style="color: black;font-weight: bold">{{"fields.email" | translate}} </ion-label>
             <ion-input
               type="text"
               [(ngModel)]="currentUser.email"
@@ -71,7 +71,7 @@
         </ion-item>
 
         <ion-item>
-          <ion-label floating style="color: black;font-weight: bold">Address</ion-label>
+          <ion-label floating style="color: black;font-weight: bold">{{"fields.address" | translate}} </ion-label>
           <ion-textarea
             type="text"
             [(ngModel)]="currentUser.address"
@@ -82,7 +82,7 @@
     </ion-list>
 
     <button ion-button block round color="secondary" (click)="save()" [disabled]="!form.valid">
-      Save
+      {{"fields.save" | translate}}
     </button>
 
   </form>

@@ -7,5 +7,26 @@
       "notification": "Notification",
       "profile": "Profile",
       "logout": "Logout"
+    },
+    "account": {
+      "signup": "Sign up",
+      "login": "Login",
+      "invited": "Invited",
+      "sign_google":"Sign in with google"
+    },
+    "fields": {
+      "username": "Username",
+      "password": "Password",
+      "phone": "Phone",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "register": "Register",
+      "validation_code": "Validation code",
+      "address": "Address",
+      "save": "Save"
+    },
+    "actions": {
+      "add" : "Add"
     }
 }

@@ -7,5 +7,23 @@
       "notification": "Notification",
       "profile": "Profile",
       "logout": "Déconnexion"
+    },
+    "account": {
+      "signup": "S'inscrire",
+      "login": "se connecter",
+      "invited": "Invité",
+      "sign_google":"Connectez-vous avec google"
+    },
+    "fields": {
+      "username": "Nom d'utilisateur",
+      "password": "mot de passe",
+      "phone": "Téléphone",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Email",
+      "register": "S'inscrire",
+      "validation_code": "Code de validation",
+      "address": "Adresse",
+      "save": "Sauvegarder"
     }
 }

@@ -7,5 +7,23 @@
       "notification": "إعلام",
       "profile": "الملف الشخصي",
       "logout": "تسجيل الخروج"
+    },
+    "account": {
+      "signup": "تسجيل",
+      "login": "يتصل",
+      "invited": "ضيف",
+      "sign_google":"تسجيل الدخول مع جوجل"
+    },
+    "fields": {
+      "username": "اسم المستخدم",
+      "password": "كلمه السر",
+      "phone": "هاتف",
+      "first_name": "الأسم الأول",
+      "last_name": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "register": "تسجيل",
+      "validation_code": "رمز التأكيد",
+      "address": "عنوان",
+      "save": "حفظ"
     }
 }

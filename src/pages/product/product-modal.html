@@ -36,7 +36,6 @@
                 </ion-item>
             </ion-list>
 
-            
             <ion-card-content>
 
               <ng-container *ngIf="assignmentPayload.action !== 'SUBMIT'">
@@ -107,7 +106,7 @@
                                     <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> 
 
                                     <ng-container *ngIf="assignmentPayload.action == 'ADD'">
-                                        Add 
+                                        {{Add}} 
                                     </ng-container>
       
                                     <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
