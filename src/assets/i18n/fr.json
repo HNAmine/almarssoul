@@ -1,5 +1,6 @@
 {
     "title": "AL MARSSOUL",
+    "please_wait": "S'il vous plaît, attendez ...",
     "modules": {
       "home": "Acceuil",
       "orders": "Mes orders",

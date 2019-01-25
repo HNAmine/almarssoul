@@ -8,6 +8,7 @@ import { Value } from "../../model/shared.model";
 import { Storage } from '@ionic/storage';
 import { tokenIndex } from "../../app/config";
 import { Home } from "../home/home";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "page-user-signup",
@@ -22,7 +23,8 @@ export class UserSignup {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     private authentificationService: AuthentificationService,
-    private storage: Storage
+    private storage: Storage,
+    private translate: TranslateService
   ) {}
 
   ionViewDidLoad() {
@@ -36,9 +38,12 @@ export class UserSignup {
     this.navCtrl.push(UserLogin);
   }
 
-  register() {
+  async register() {
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
 

@@ -4,6 +4,7 @@ import { AssignmentPayload, Action, ProductDetails } from "../../model/product.m
 import { BasketService } from "../../providers/basket.service";
 import { Geolocation } from '@ionic-native/geolocation';
 import { BasketPage } from "../basket/basket";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: 'product-modal',
@@ -21,7 +22,8 @@ import { BasketPage } from "../basket/basket";
    constructor(private basketService:BasketService, params: NavParams, public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,     public navCtrl: NavController,
-    private geolocation: Geolocation, private alertCtrl: AlertController) {
+    private geolocation: Geolocation, private alertCtrl: AlertController,
+    private translate: TranslateService) {
         this.product = params.get('product');
         this.assignmentPayload.action = params.get('mode');
         if(this.assignmentPayload.action !== Action.SUBMIT){
@@ -86,10 +88,12 @@ import { BasketPage } from "../basket/basket";
        });
   }
 
-  assignCommit() {
+  async assignCommit() {
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
 
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
 
     loader.present();

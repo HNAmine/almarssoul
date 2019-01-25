@@ -50,11 +50,15 @@ export class OrdersPage {
     this.navCtrl.push(BasketPage);
   }
 
-  loadOrders() {
+  async loadOrders() {
     this.loading = true;
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
+
     loader.present();
     this.basketService.getOrders().subscribe((baskets:BasketDetails[])=> {
         this.baskets = baskets;
@@ -130,11 +134,13 @@ export class OrdersPage {
     const submitLabel:any = await this.translate.get('fields.submit');
     alert.addButton(cancelLabel.value);
     
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     alert.addButton({
       text: submitLabel.value,
       handler: data => {
         let loader = this.loadingCtrl.create({
-          content: "Please wait..."
+          content: pleaseWaitLabel.value
         });
         loader.present();
         this.basketService.addNote(basket.id, data).subscribe(succes => {

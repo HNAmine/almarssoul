@@ -5,6 +5,7 @@ import { AuthentificationService } from "../../providers/authentification.servic
 import { Invitation } from "../../model/authentification.model";
 // import { SMS } from '@ionic-native/sms';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "invitation",
@@ -20,7 +21,8 @@ export class InvitationPage {
     private authentificationService: AuthentificationService,
     public toastCtrl: ToastController,
     // private sms: SMS,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private translate: TranslateService
   ) {
   }
 
@@ -32,10 +34,13 @@ export class InvitationPage {
     this.navCtrl.push(BasketPage);
   }
 
-  loadInvitation(){
+  async loadInvitation(){
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
+
     loader.present();
     this.authentificationService.getInvitation().subscribe(invitations => {
         this.invitations = invitations;
@@ -53,9 +58,12 @@ export class InvitationPage {
     return trigram;
   }
 
-  invite() {
+  async invite() {
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
       this.authentificationService.invite(this.phone).subscribe((invitation: Invitation) => {

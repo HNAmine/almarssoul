@@ -5,6 +5,7 @@ import { User } from '../../model/authentification.model';
 import { tokenIndex } from '../../app/config';
 import { AuthentificationService } from '../../providers/authentification.service';
 import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "profil",
@@ -20,23 +21,22 @@ export class ProfilPage {
     public loadingCtrl: LoadingController,
     private storage: Storage,
     private authentificationService: AuthentificationService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private translate: TranslateService
   ) {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
-    loader.present();
     this.currentUser = this.authentificationService.getCurrentUser();
-    loader.dismiss();
   }
 
   goToBasketPage(){
     this.navCtrl.push(BasketPage);
   }
 
-  save() {
+  async save() {
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
     this.authentificationService.updateUserInfo(this.currentUser).subscribe(payload => {

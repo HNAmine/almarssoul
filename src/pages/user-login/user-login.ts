@@ -8,6 +8,7 @@ import { Value } from "../../model/shared.model";
 import { Storage } from '@ionic/storage';
 import { tokenIndex } from "../../app/config";
 import { CustomError } from "../../app/errors.handler";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "page-user-login",
@@ -23,7 +24,8 @@ export class UserLogin {
     public toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
     private authentificationService: AuthentificationService,
-    private storage: Storage
+    private storage: Storage,
+    private translate: TranslateService
   ) {}
 
   ionViewDidLoad() {
@@ -37,9 +39,12 @@ export class UserLogin {
     this.navCtrl.push(UserSignup);
   }
 
-  signin() {
+  async signin() {
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
 
     loader.present();

@@ -7,6 +7,7 @@ import { StoreService } from '../../providers/store.service';
 import { Store } from '../../model/store.model';
 import { Category } from '../../model/category.model';
 import { CategoryPage } from '../category/category';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the Dashboard page.
@@ -29,7 +30,8 @@ export class Dashboard {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private translate: TranslateService
   ) {
   }
 
@@ -37,11 +39,15 @@ export class Dashboard {
       this.loadStores();
   }
 
-  loadStores(){
+  async loadStores(){
     this.loading = true;
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
+
     loader.present();
     this.storeService.getStores(this.pageable).subscribe(payload => {
       this.stores.push(...payload.content);

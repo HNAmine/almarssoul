@@ -3,6 +3,7 @@ import { BasketService } from '../../providers/basket.service';
 import { LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { AssignmentPayload, Action, BasketDetails, ProductDetails } from '../../model/product.model';
 import { ProductModal } from '../../pages/product/product-modal';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the ProductsListComponent component.
@@ -22,13 +23,17 @@ export class ProductsListComponent {
   constructor(private basketService:BasketService,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    private translate: TranslateService) {
       this.loadCurrentBasket();
   }
 
-  loadCurrentBasket(){
+  async loadCurrentBasket(){
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
     this.basketService.getCurrentBasket().subscribe(basket => {

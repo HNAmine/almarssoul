@@ -4,6 +4,7 @@ import { NavController, NavParams, LoadingController, ToastController } from "io
 import { User } from '../../model/authentification.model';
 import { NotificationService } from '../../providers/notification.service';
 import { Notification } from '../../model/notification.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "notification",
@@ -19,7 +20,8 @@ export class NotificationPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private translate: TranslateService
   ) {
     this.loadNotification();
   }
@@ -28,9 +30,11 @@ export class NotificationPage {
     this.navCtrl.push(BasketPage);
   }
 
-  loadNotification(){
+  async loadNotification(){
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
     this.notificationService.getNotifications().subscribe(notifications => {
@@ -41,9 +45,10 @@ export class NotificationPage {
     });
   }
 
-  readNotification(notification: Notification){
+  async readNotification(notification: Notification){
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
     loader.present();
     this.notificationService.readNotification(notification.id).subscribe(() => {

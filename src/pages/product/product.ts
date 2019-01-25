@@ -6,6 +6,7 @@ import { Store } from '../../model/store.model';
 import { Category } from '../../model/category.model';
 import { ProductService } from '../../providers/product.service';
 import { ProductModal } from './product-modal';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "product",
@@ -19,10 +20,6 @@ export class ProductPage {
 
   products:Product[] = [];
 
-  loader = this.loadingCtrl.create({
-    content: "Please wait..."
-  });
-
   pageable = {search: '', page: 0, size: 10, sort: ''};
 
   totalPages: number = 0;
@@ -32,7 +29,8 @@ export class ProductPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController,
-    private productService: ProductService
+    private productService: ProductService,
+    private translate: TranslateService
   ) {
     this.store = navParams.get("store");
     this.category = navParams.get("category");
@@ -42,10 +40,14 @@ export class ProductPage {
       this.loadProductsOfCategory();
   }
 
-  loadProductsOfCategory(){
+  async loadProductsOfCategory(){
+
+    const pleaseWaitLabel:any = await this.translate.get('please_wait');
+
     let loader = this.loadingCtrl.create({
-      content: "Please wait..."
+      content: pleaseWaitLabel.value
     });
+
     loader.present();
     this.productService.getProductsByCategory(this.category.id, this.pageable).subscribe(payload => {
       this.products.push(...payload.content);
