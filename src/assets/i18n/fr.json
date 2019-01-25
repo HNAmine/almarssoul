@@ -1,4 +1,5 @@
 {
+    "title": "AL MARSSOUL",
     "modules": {
       "home": "Acceuil",
       "orders": "Mes orders",
@@ -24,6 +25,58 @@
       "register": "S'inscrire",
       "validation_code": "Code de validation",
       "address": "Adresse",
-      "save": "Sauvegarder"
+      "save": "Sauvegarder",
+      "search": "Rechercher",
+      "no_result": "Pas de résultats",
+      "no_orders": "t'as pas d'ordres",
+      "cancel": "Annuler",
+      "submit": "Soumettre",
+      "very_good": "Très bon",
+      "good": "bon",
+      "moyen": "moyen",
+      "not_bad": "Pas mal",
+      "bad": "Mauvais",
+      "note": "Noter",
+      "send": "Envoyer"
+    },
+    "actions": {
+      "add" : "Ajouter",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "and_submit": "& soumettre"
+    },
+    "basket": {
+      "submitted": "Soumis",
+      "inprogress": "En cours",
+      "rejected": "Rejeté",
+      "completed": "Terminé",
+      "owner_note": "Note du propriétaire ",
+      "products": "produits",
+      "delivery_position": "le panier sera livré dans votre position actuelle",
+      "products_cost": "coût des Produits",
+      "delivery_cost": "Frais de livraison",
+      "total": "Total"
+    },
+    "product": {
+      "label": "Étiquette",
+      "u_cost": "Coût unitaire",
+      "qte": "Quantité",
+      "t_cost": "Coût total",
+      "current_basket": "Panier actuel",
+      "no_current_basket": "il n'y a pas de produit dans le panier actuel",
+      "subtotal": "Total",
+      "to_the_basket": "Au panier",
+      "edit_product": "Editer produit",
+      "delete_product": "Supprimer le produit",
+      "submit_products": "Soumettre le produit",
+      "quantity": "Quantité"
+    },
+    "invitation": {
+      "old_invitation": "Ancienne invitation",
+      "phone_invited": "Téléphone de l'invités",
+      "no_invitation": "il n'y a pas d'invitations"
+    },
+    "notification": {
+      "no_notification": "il n'y a pas de notification"
     }
 }

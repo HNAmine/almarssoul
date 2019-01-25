@@ -13,6 +13,7 @@
         showCancelButton=true
         (search)="onInput($event)"
         cancelButtonText = "Cancel"
+        placeholder= '{{"fields.search" | translate}}'
         (ionCancel)="onCancel($event)">
     </ion-searchbar>
   </ion-toolbar>
@@ -20,7 +21,7 @@
 
 <ion-content class="card-background-page">
 
-    <h4 style="text-align: center" *ngIf="!loading && stores.length === 0"><ion-icon name="ios-warning-outline"></ion-icon> No result found !</h4>
+    <h4 style="text-align: center;font-weight: bold;color: orange;" *ngIf="!loading && stores.length === 0"><ion-icon name="ios-warning-outline"></ion-icon> {{"fields.no_result" | translate}}</h4>
     <ion-card *ngFor="let store of stores" (click)="goToStoreDetails(store)">
       <img [src]="store.avatarUri"/>
       <div class="card-title" style="color: black !important">{{store.label}} <span style="font-size: 14px">({{store.code}})</span></div>

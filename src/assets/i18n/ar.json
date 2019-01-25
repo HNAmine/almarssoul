@@ -1,4 +1,5 @@
 {
+    "title": "المرسول",
     "modules": {
       "home": "الصفحة الرئيسية",
       "orders": "طلباتي",
@@ -24,6 +25,58 @@
       "register": "تسجيل",
       "validation_code": "رمز التأكيد",
       "address": "عنوان",
-      "save": "حفظ"
+      "save": "حفظ",
+      "search": "بحث",
+      "no_result": "لا نتائج",
+      "no_orders": "لا يوجد لديك أوامر",
+      "cancel": "إلغاء",
+      "submit": "إرسال",
+      "very_good": "جيد جدا",
+      "good": "جيد",
+      "moyen": "متوسط",
+      "not_bad": "ليس سيئا",
+      "bad": "سيئة",
+      "note": "ملحوظة",
+      "send": "إرسال"
+    },
+    "actions": {
+      "add" : "إضافة",
+      "edit": "تغيير",
+      "delete": "نزع",
+      "and_submit": "وتقديم"
+    },
+    "basket": {
+      "submitted": "قدمت",
+      "inprogress": "في تقدم",
+      "rejected": "مرفوض",
+      "completed": "منجز",
+      "owner_note": "ملاحظة المالك",
+      "products": "منتجات",
+      "delivery_position": "سيتم تسليم السلة في وضعك الفعلي",
+      "products_cost": "تكلفة المنتجات",
+      "delivery_cost": "تكاليف التوصيل",
+      "total": "مجموع"
+    },
+    "product": {
+      "label": "ملصق",
+      "u_cost": "تكلفة الوحدة",
+      "qte": "كمية",
+      "t_cost": "التكلفة الإجمالية",
+      "current_basket": "سلة الحالية",
+      "no_current_basket": "لا يوجد منتج في السلة الحالية",
+      "subtotal": "حاصل الجمع",
+      "to_the_basket": "الى السلة",
+      "edit_product": "تحرير المنتج",
+      "delete_product": "حذف المنتج",
+      "submit_products": "تقديم المنتج",
+      "quantity": "كمية"
+    },
+    "invitation": {
+      "old_invitation": "دعوة قديمة",
+      "phone_invited": "هاتف الضيف",
+      "no_invitation": "لا توجد دعوات"
+    },
+    "notification": {
+      "no_notification":"لا يوجد إخطار"
     }
 }

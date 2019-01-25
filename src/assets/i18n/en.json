@@ -1,4 +1,5 @@
 {
+    "title": "AL MARSSOUL",
     "modules": {
       "home": "Home",
       "orders": "My orders",
@@ -24,9 +25,58 @@
       "register": "Register",
       "validation_code": "Validation code",
       "address": "Address",
-      "save": "Save"
+      "save": "Save",
+      "search": "Search",
+      "no_result": "No result found",
+      "no_orders": "you have no orders",
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "very_good": "Very good",
+      "good": "Good",
+      "moyen": "Moyen",
+      "not_bad": "Not bad",
+      "bad": "Bad",
+      "note": "Note",
+      "send": "Send"
     },
     "actions": {
-      "add" : "Add"
+      "add" : "Add",
+      "edit": "Edit",
+      "delete": "Delete",
+      "and_submit": "& submit"
+    },
+    "basket": {
+      "submitted": "Submitted",
+      "inprogress": "In progress",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "owner_note": "Owner note ",
+      "products": "Products",
+      "delivery_position": "the basket will be delivered in your actual position",
+      "products_cost": "Products cost",
+      "delivery_cost": "Delivery cost",
+      "total": "Total"
+    },
+    "product": {
+      "label": "Label",
+      "u_cost": "U.Cost",
+      "qte": "Qty",
+      "t_cost": "T.Cost",
+      "current_basket": "Current basket",
+      "no_current_basket": "there is no product in current basket",
+      "subtotal": "Subtotal",
+      "to_the_basket": "To the basket",
+      "edit_product": "Edit product",
+      "delete_product": "Delete product",
+      "submit_products": "Submit products",
+      "quantity": "Quantity"
+    },
+    "invitation": {
+      "old_invitation": "Old invitation",
+      "phone_invited": "Guest phone",
+      "no_invitation": "there is no invitations"
+    },
+    "notification": {
+      "no_notification":"there is no notification"
     }
 }

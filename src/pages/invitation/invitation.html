@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="false">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center>
-      Invitation
+      {{"modules.invite" | translate}}
     </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
@@ -15,7 +15,7 @@
         <ion-icon style="font-size: 30px;" name="md-add-circle"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="LIST" style="color: white;font-weight: bold">
-        Old invitation
+        {{"invitation.old_invitation" | translate}}
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -26,7 +26,7 @@
     <ion-list *ngSwitchCase="'ADD'">
 
     <ion-item>
-        <ion-label floating style="color: black;font-weight: bold">Phone of invited <span class="required">(*)</span></ion-label>
+        <ion-label floating style="color: black;font-weight: bold">{{"invitation.phone_invited" | translate}} <span class="required">(*)</span></ion-label>
         <ion-input
           type="text"
           [(ngModel)]="phone"
@@ -38,14 +38,14 @@
     </ion-item>
 
     <button ion-button block round color="secondary" (click)="invite()" [disabled]="!phone">
-        Send
+        {{"fields.send" | translate}}
     </button>
   
     </ion-list>
 
       <ion-list *ngSwitchCase="'LIST'">
 
-        <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="invitations && invitations.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no invitations</h6>
+        <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="invitations && invitations.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> {{"invitation.no_invitation" | translate}} </h6>
 
         <ion-item *ngFor="let invitation of invitations">
           <ion-avatar item-start>

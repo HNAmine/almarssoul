@@ -2,21 +2,21 @@
     <ion-toolbar>
       <ion-title>
         <button *ngIf="assignmentPayload.action == 'ADD'" ion-button style="font-size: 20px;color:white;" clear item-end>
-            <ion-icon name="md-add-circle" style="margin-right:10px"></ion-icon> au panier
+            <ion-icon name="md-add-circle" style="margin-right:10px"></ion-icon> {{"product.to_the_basket" | translate}}
         </button>
         <button *ngIf="assignmentPayload.action == 'UPDATE'" ion-button style="font-size: 20px;color:white;" clear item-end>
-            <ion-icon name="construct" style="margin-right:10px"></ion-icon> edit product
+            <ion-icon name="construct" style="margin-right:10px"></ion-icon> {{"product.edit_product" | translate}}
         </button>
         <button *ngIf="assignmentPayload.action == 'DELETE'" ion-button style="font-size: 20px;color:white;" clear item-end>
-            <ion-icon name="md-trash" style="margin-right:10px"></ion-icon> delete product
+            <ion-icon name="md-trash" style="margin-right:10px"></ion-icon> {{"product.delete_product" | translate}}
         </button>
         <button *ngIf="assignmentPayload.action == 'SUBMIT'" ion-button style="font-size: 20px;color:white;" clear item-end>
-            <ion-icon name="checkmark" style="margin-right:10px"></ion-icon> submit products
+            <ion-icon name="checkmark" style="margin-right:10px"></ion-icon> {{"product.submit_products" | translate}}
         </button>
       </ion-title>
       <ion-buttons start>
         <button ion-button (click)="dismiss()">
-            Cancel
+            {{"fields.cancel" | translate}}
         </button>
       </ion-buttons>
     </ion-toolbar>
@@ -27,9 +27,6 @@
         <ion-card>
             <ion-list *ngIf="assignmentPayload.action !== 'SUBMIT'">
                 <ion-item>
-                  <!-- <ion-avatar item-start>
-                      <img style="border-radius: 0px !important;overflow: hidden;width: 80px;height: 80px;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>
-                  </ion-avatar> -->
                   <h1>{{product?.productLabel}}</h1>
                   <h3>{{product?.productDescription}}</h3>
                   <h4 style="font-weight: bold">{{product?.productCost}} x {{assignmentPayload?.quantity}} = {{product?.productCost * assignmentPayload?.quantity}}</h4>
@@ -39,7 +36,7 @@
             <ion-card-content>
 
               <ng-container *ngIf="assignmentPayload.action !== 'SUBMIT'">
-                  <h6 *ngIf="assignmentPayload.action == 'DELETE'" class="text-center">Quantity <span> : {{product.quantity}}</span></h6>
+                  <h6 *ngIf="assignmentPayload.action == 'DELETE'" class="text-center">{{"product.quantity" | translate}} <span> : {{product.quantity}}</span></h6>
                   <div *ngIf="assignmentPayload.action !== 'DELETE'" class="input-group input-number-group">
                     <div class="input-group-button" (click)="decrement()">
                       <span class="input-number-decrement">-</span>
@@ -54,21 +51,9 @@
 
               <ion-list *ngIf="showSubmit || assignmentPayload.action == 'SUBMIT'">
 
-                      <p *ngIf="assignmentPayload.action == 'SUBMIT'" style="font-weight: bold">(products cost) {{productsCost}} + (delivery cost) {{deliveryCost}} = (total) {{productsCost + deliveryCost}}</p>
+                      <p *ngIf="assignmentPayload.action == 'SUBMIT'" style="font-weight: bold">{{"basket.products_cost" | translate}} {{productsCost}} + {{"basket.delivery_cost" | translate}} {{deliveryCost}} = {{"basket.total" | translate}} {{productsCost + deliveryCost}}</p>
 
-                      <!-- <ion-item>
-                        <ion-label>Use current position</ion-label>
-                        <ion-checkbox [(ngModel)]="useCurrentPosition"></ion-checkbox>
-                      </ion-item>
-
-                      <ng-container *ngIf="!useCurrentPosition">
-                          <ion-item>
-                              <ion-label style="color: black;font-weight: bold" stacked>Address</ion-label>
-                              <ion-textarea [(ngModel)]="assignmentPayload.address" style="color: black;font-weight: bold" maxLength="500" rows="5" type="text" placeholder="Address"></ion-textarea>
-                          </ion-item>                          
-                      </ng-container> -->
-
-                    <p style="font-weight: bold"> <br><ion-icon name="information-circle"></ion-icon> the basket will be delivered in your actual position !</p>
+                    <p style="font-weight: bold"> <br><ion-icon name="information-circle"></ion-icon> {{"basket.delivery_position" | translate}}</p>
               </ion-list>
 
               <ion-row *ngIf="assignmentPayload.action == 'SUBMIT'">
@@ -76,7 +61,7 @@
                   </ion-col>
                   <ion-col col-5>
                       <button (click)="submit()" [disabled]="!useCurrentPosition && !assignmentPayload.address" ion-button color="success" end style="color: white;float: right;">
-                          <ion-icon name="checkmark" style="margin-right: 5px"></ion-icon> Submit
+                          <ion-icon name="checkmark" style="margin-right: 5px"></ion-icon> {{"fields.submit" | translate}}
                       </button>
                   </ion-col>
               </ion-row>
@@ -88,15 +73,15 @@
                             <button (click)="action()" ion-button color="secondary" style="font-size: 12px;font-weight: bold;float: right">
                                 
                               <ng-container *ngIf="assignmentPayload.action == 'ADD'">
-                                  <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> Add
+                                  <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> {{"actions.add" | translate}}
                               </ng-container>
 
                               <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
-                                  <ion-icon name="construct" style="margin-right: 5px"></ion-icon> Edit
+                                  <ion-icon name="construct" style="margin-right: 5px"></ion-icon> {{"actions.edit" | translate}}
                               </ng-container>
 
                               <ng-container *ngIf="assignmentPayload.action == 'DELETE'">
-                                  <ion-icon name="md-trash" style="margin-right: 5px"></ion-icon> Delete
+                                  <ion-icon name="md-trash" style="margin-right: 5px"></ion-icon> {{"actions.delete" | translate}}
                               </ng-container>
 
                             </button>
@@ -106,16 +91,16 @@
                                     <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon> 
 
                                     <ng-container *ngIf="assignmentPayload.action == 'ADD'">
-                                        {{Add}} 
+                                        {{"actions.add" | translate}}
                                     </ng-container>
       
                                     <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
-                                         Edit 
+                                        {{"actions.edit" | translate}} 
                                     </ng-container>
       
                                     <ng-container *ngIf="assignmentPayload.action == 'DELETE'">
-                                        Del 
-                                    </ng-container> & submit
+                                        {{"actions.delete" | translate}} 
+                                    </ng-container> {{"actions.and_submit" | translate}} 
                                 </button>
                         </ion-col>
               </ion-row>

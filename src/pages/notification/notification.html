@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="false">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center>
-      Notification
+      {{"modules.notification" | translate}}
     </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
@@ -12,9 +12,9 @@
 
 <ion-content padding>
 
-  <h5 style="font-weight: bold;"> <ion-icon name="md-notifications"></ion-icon> Notifications </h5>
+  <h5 style="font-weight: bold;"> <ion-icon name="md-notifications"></ion-icon> {{"modules.notification" | translate}} </h5>
 
-  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="notifications && notifications.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> there is no notification</h6>
+  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="notifications && notifications.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> {{"notification.no_notification" | translate}}</h6>
 
   <ion-list>
     <ion-item *ngFor="let notification of notifications" [ngClass]="{'unreaded-notification' : !notification.readed}" (click)="readNotification(notification)">

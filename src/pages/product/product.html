@@ -13,6 +13,7 @@
             [(ngModel)]="pageable.search"
             showCancelButton=true
             (search)="onInput($event)"
+            placeholder= '{{"fields.search" | translate}}'
             (ionCancel)="onCancel($event)">
         </ion-searchbar>
   </ion-toolbar>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title text-center> My orders </ion-title>
+    <ion-title text-center> {{"modules.orders" | translate}} </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
     </ion-buttons>
@@ -9,9 +9,9 @@
 </ion-header>
 
 <ion-content padding>
-  <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> My orders </h5>
+  <h5 style="font-weight: bold;"> <ion-icon name="md-arrow-dropright"></ion-icon> {{"modules.orders" | translate}} </h5>
 
-  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="!loading && baskets && baskets.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> you have no orders</h6>
+  <h6 style="text-align: center;font-weight: bold;color: orange;" *ngIf="!loading && baskets && baskets.length == 0"><ion-icon name="ios-warning-outline"></ion-icon> {{"fields.no_orders" |translate}}</h6>
 
   <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
@@ -30,10 +30,10 @@
 
         <h2 style="font-weight: bold">{{basket.doneAt |  date: 'MM/dd/yy'}} 
 
-          <ion-badge *ngIf="basket.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>Submitted</ion-badge>
-          <ion-badge *ngIf="basket.state === 'INPROGRESS'" style="float: right;" item-end>In progress</ion-badge>
-          <ion-badge *ngIf="basket.state === 'REJECTED'" style="float: right;background-color: brown" item-end>Rejected</ion-badge>
-          <ion-badge *ngIf="basket.state === 'COMPLETED'" style="float: right;background-color: green" item-end>Completed</ion-badge>
+          <ion-badge *ngIf="basket.state === 'SUBMITED'" style="float: right;background-color: orangered" item-end>{{"basket.submitted" | translate}}</ion-badge>
+          <ion-badge *ngIf="basket.state === 'INPROGRESS'" style="float: right;" item-end>{{"basket.inprogress" | translate}}</ion-badge>
+          <ion-badge *ngIf="basket.state === 'REJECTED'" style="float: right;background-color: brown" item-end>{{"basket.rejected" | translate}}</ion-badge>
+          <ion-badge *ngIf="basket.state === 'COMPLETED'" style="float: right;background-color: green" item-end>{{"basket.completed" | translate}}</ion-badge>
 
         </h2>
       </ion-card-title>
@@ -45,14 +45,14 @@
           <ion-icon (click)="addNote(basket)" name="md-settings" style="float: right"></ion-icon>
 
             <p style="font-weight: bold" (click)="addNote(basket)">
-              Owner note : 
+              {{"basket.owner_note" | translate}}
               <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= basket.ownerRate}"></ion-icon>
             </p>
 
             <!-- <p (click)="showInMap(basket)"><ion-icon name="locate"></ion-icon> {{basket.lat}}, {{basket.lng}}</p> -->
 
             <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(basket)">
-              products
+              {{"basket.products" | translate}}
             </button>
       <h1 style="float: right;font-weight: bold">{{basket.totalCost + basket.deliveryCost}} DH</h1>
     </ion-card-content>

@@ -12,6 +12,7 @@ import {
 import { BasketService } from '../../providers/basket.service';
 import { BasketDetails } from '../../model/product.model';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the Dashboard page.
@@ -36,7 +37,8 @@ export class OrdersPage {
     public loadingCtrl: LoadingController,
     private basketService:BasketService,
     public modalCtrl: ModalController,
-    private launchNavigator: LaunchNavigator
+    private launchNavigator: LaunchNavigator,
+    private translate: TranslateService
   ) {
   }
 
@@ -80,42 +82,56 @@ export class OrdersPage {
     );
   }
 
-  addNote(basket : BasketDetails){
+  async addNote(basket : BasketDetails){
     let alert = this.alertCtrl.create();
-    alert.setTitle('Note');
+
+    const noteLabel:any = await this.translate.get('fields.note');
+
+    alert.setTitle(noteLabel.value);
+
+    const veryGoodLabel:any = await this.translate.get('fields.very_good');
+    const goodLabel:any = await this.translate.get('fields.good');
+    const moyenLabel:any = await this.translate.get('fields.moyen');
+    const notBadLabel:any = await this.translate.get('fields.not_bad');
+    const badLabel:any = await this.translate.get('fields.bad');
+
     alert.addInput({
       type: 'radio',
-      label: 'VERY GOOD',
+      label: veryGoodLabel.value,
       value: '5',
       checked: basket.ownerRate === 5
     });
     alert.addInput({
       type: 'radio',
-      label: 'GOOD',
+      label: goodLabel.value,
       value: '4',
       checked: basket.ownerRate === 4
     });
     alert.addInput({
       type: 'radio',
-      label: 'MOYEN',
+      label: moyenLabel.value,
       value: '3',
       checked: basket.ownerRate === 3
     });
     alert.addInput({
       type: 'radio',
-      label: 'NOT BAD',
+      label: notBadLabel.value,
       value: '2',
       checked: basket.ownerRate === 2
     });
     alert.addInput({
       type: 'radio',
-      label: 'BAD',
+      label: badLabel.value,
       value: '1',
       checked: basket.ownerRate === 1
     });
-    alert.addButton('Cancel');
+
+    const cancelLabel:any = await this.translate.get('fields.cancel');
+    const submitLabel:any = await this.translate.get('fields.submit');
+    alert.addButton(cancelLabel.value);
+    
     alert.addButton({
-      text: 'Submit',
+      text: submitLabel.value,
       handler: data => {
         let loader = this.loadingCtrl.create({
           content: "Please wait..."
