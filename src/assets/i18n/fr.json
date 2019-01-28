@@ -56,7 +56,8 @@
       "delivery_position": "le panier sera livré dans votre position actuelle",
       "products_cost": "coût des Produits",
       "delivery_cost": "Frais de livraison",
-      "total": "Total"
+      "total": "Total",
+      "action_success": "L'action a été effectuée avec succès"
     },
     "product": {
       "label": "Étiquette",

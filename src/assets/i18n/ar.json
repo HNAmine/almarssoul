@@ -56,7 +56,8 @@
       "delivery_position": "سيتم تسليم السلة في وضعك الفعلي",
       "products_cost": "تكلفة المنتجات",
       "delivery_cost": "تكاليف التوصيل",
-      "total": "مجموع"
+      "total": "مجموع",
+      "action_success": "تم عمل بنجاح"
     },
     "product": {
       "label": "ملصق",

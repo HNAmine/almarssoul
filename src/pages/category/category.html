@@ -20,7 +20,12 @@
 
     <ion-grid>
         <ion-row justify-content-center> 
-            <ion-col *ngFor="let category of store.categories" class="category-label" (click)="goToCategoryDetails(category)" col-4>{{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i></ion-col>
+            <ion-col *ngFor="let category of store.categories" class="category-label" (click)="goToCategoryDetails(category)" col-5>
+
+                <img *ngIf="category.avatarUri" [src]="category.avatarUri" style="width:100px ;height: 100px;">
+                {{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i>
+                
+            </ion-col>
         </ion-row>
     </ion-grid>
 

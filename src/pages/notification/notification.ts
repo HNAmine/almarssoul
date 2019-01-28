@@ -46,6 +46,7 @@ export class NotificationPage {
   }
 
   async readNotification(notification: Notification){
+    if(!notification.readed){
     const pleaseWaitLabel:any = await this.translate.get('please_wait');
     let loader = this.loadingCtrl.create({
       content: pleaseWaitLabel.value
@@ -57,5 +58,7 @@ export class NotificationPage {
     }, ()=> {
       loader.dismiss();
     });
+    }
+
   }
 }

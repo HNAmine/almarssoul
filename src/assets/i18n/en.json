@@ -56,7 +56,8 @@
       "delivery_position": "the basket will be delivered in your actual position",
       "products_cost": "Products cost",
       "delivery_cost": "Delivery cost",
-      "total": "Total"
+      "total": "Total",
+      "action_success": "Action was done successfully"
     },
     "product": {
       "label": "Label",

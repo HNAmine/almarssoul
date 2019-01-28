@@ -91,7 +91,7 @@ import { TranslateService } from "@ngx-translate/core";
   async assignCommit() {
 
     const pleaseWaitLabel:any = await this.translate.get('please_wait');
-
+    const actionDoneLabel:any = await this.translate.get('basket.action_success');
     let loader = this.loadingCtrl.create({
       content: pleaseWaitLabel.value
     });
@@ -99,8 +99,10 @@ import { TranslateService } from "@ngx-translate/core";
     loader.present();
     this.basketService.assign(this.assignmentPayload).subscribe(()=> {
       loader.dismiss();
+
+      
       const toast = this.toastCtrl.create({
-        message: 'Action was done successfully',
+        message: actionDoneLabel.value,
         duration: 3000
       });
       toast.present();
