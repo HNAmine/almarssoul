@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="false">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center (click)="goToBasketPage()">
-        {{store.label}}
+        {{store.labelAr}} {{store.labelFr}}
     </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
@@ -14,7 +14,7 @@
 
     <ion-card>
         <img [src]="store.avatarUri"/>
-        <div class="card-title" style="color: black !important">{{store.label}}</div>
+        <div class="card-title" style="color: black !important">{{store.labelAr}} {{store.labelFr}}</div>
         <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
     </ion-card>
 
@@ -23,7 +23,7 @@
             <ion-col *ngFor="let category of store.categories" class="category-label" (click)="goToCategoryDetails(category)" col-5>
 
                 <img *ngIf="category.avatarUri" [src]="category.avatarUri" style="width:100px ;height: 100px;">
-                {{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i>
+                {{category.labelAr}} {{category.labelFr}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.descriptionAr}} {{category.descriptionFr}})</i>
                 
             </ion-col>
         </ion-row>

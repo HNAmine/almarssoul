@@ -77,7 +77,7 @@ export class Dashboard {
     let prefix = '';
     let label = '';
     for(let i = 0 ;i < categories.length; i++){
-      label += prefix + categories[i].label;
+      label += prefix + categories[i].labelAr + ' ' +categories[i].labelFr;
       prefix = ', '
     }
     if(label.length > 30) {
