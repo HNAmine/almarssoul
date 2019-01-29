@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="false">
     <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
     <ion-title text-center (click)="goToBasketPage()">
-            {{category?.label}}
+        {{category?.labelAr}} {{category?.labelFr}}
     </ion-title>
     <ion-buttons end (click)="goToBasketPage()">
         <button ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
@@ -21,7 +21,7 @@
 
 <ion-content class="card-background-page">
 
-    <h1 style="margin: 10px"><ion-icon name="md-arrow-dropright"></ion-icon> {{store?.label}}</h1>
+    <h1 style="margin: 10px"><ion-icon name="md-arrow-dropright"></ion-icon> {{store?.labelAr}} {{store?.labelFr}}</h1>
     
     <ion-list>
 
@@ -30,8 +30,8 @@
 
             <h2 style="font-weight: bold">
                 <img *ngIf="product.avatarUri" style="width: 20% !important; height: 20% !important;" [src]="product.avatarUri"/>
-                {{product.label}}
-                <span style="font-size: 10px" *ngIf="product.description"><i>({{product.description}})</i></span>
+                {{product.labelAr}} {{product.labelFr}}
+                <span style="font-size: 10px" *ngIf="product.descriptionAr || product.descriptionFr"><i>({{product.descriptionAr}} {{product.descriptionFr}})</i></span>
             </h2>
 
             <p style="font-weight: bold;color: black">{{product.cost}} um/Kg</p>
@@ -42,19 +42,5 @@
                 <ion-infinite-scroll-content></ion-infinite-scroll-content>
         </ion-infinite-scroll>
     </ion-list>
-
-    <!-- <ion-card>
-        <img [src]="store.avatarUri"/>
-        <div class="card-title" style="color: black !important">{{store.label}}</div>
-        <div class="card-subtitle" style="color: black !important;font-size: 1.4em !important;font-weight: bold">{{store.description}}</div>
-    </ion-card>
-
-    <ion-grid>
-        <ion-row justify-content-center> 
-            <ion-col *ngFor="let category of store.categories" class="category-label" col-4>{{category.label}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.description}})</i></ion-col>
-        </ion-row>
-    </ion-grid>
-
- -->
 
 </ion-content>

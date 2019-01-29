@@ -15,9 +15,6 @@
         <ion-grid style="border: 1px solid" style="font-size: 12px;padding: 0px !important" *ngIf="basket.products && basket.products.length > 0">
                 <ion-row style="border: 1px solid;background-color: #00abec;">
                   <ion-col col-3 style="font-weight: bold">
-                    Avatar
-                  </ion-col>
-                  <ion-col col-3 style="font-weight: bold">
                     Label
                   </ion-col>
                   <ion-col col-2 style="font-weight: bold">
@@ -31,11 +28,8 @@
                   </ion-col>
                 </ion-row>
                 <ion-row *ngFor="let product of basket.products">
-                        <ion-col col-3>
-                              <img style="width: 100% !important; height: 100% !important;" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/766/low-calorie-fruit-1516368847.jpg?resize=768:*"/>  
-                        </ion-col>
                         <ion-col col-3>  
-                          {{product?.productLabel}} <span style="font-weight: bold">({{product?.categoryLabel}}) ({{product?.storeLabel}})</span>
+                          {{product?.productLabelAr}} {{product?.productLabelFr}} <span style="font-weight: bold">({{product?.categoryLabelAr}} {{product?.categoryLabelFr}}) ({{product?.storeLabelAr}} {{product?.storeLabelFr}})</span>
                         </ion-col>
                         <ion-col col-2>
                           {{product?.productCost}}

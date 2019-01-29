@@ -23,20 +23,11 @@
             <ion-col *ngFor="let category of store.categories" class="category-label" (click)="goToCategoryDetails(category)" col-5>
 
                 <img *ngIf="category.avatarUri" [src]="category.avatarUri" style="width:100px ;height: 100px;">
+                <br *ngIf="category.avatarUri">
                 {{category.labelAr}} {{category.labelFr}} <i style="font-size: 12px" *ngIf="category.description"><br>({{category.descriptionAr}} {{category.descriptionFr}})</i>
                 
             </ion-col>
         </ion-row>
     </ion-grid>
-
-    <ion-list>
-
-      <!-- <ion-item *ngFor="let product of category.products">
-            <h2 style="font-weight: bold">{{product.name}}</h2>
-            <p>{{product.price}} um/Kg</p>
-            <button (click)="openProductModal()" ion-button clear item-end><ion-icon style="color: green;font-size: 30px;" name="md-add-circle"></ion-icon></button>
-      </ion-item> -->
-
-  </ion-list>
 
 </ion-content>

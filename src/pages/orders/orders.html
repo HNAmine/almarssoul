@@ -38,8 +38,6 @@
         </h2>
       </ion-card-title>
 
-
-
       <hr>
 
           <ion-icon (click)="addNote(basket)" name="md-settings" style="float: right"></ion-icon>
@@ -48,8 +46,6 @@
               {{"basket.owner_note" | translate}}
               <ion-icon *ngFor="let i of [1,2,3,4,5]" name="md-star" [ngClass]="{'start-selected' : i <= basket.ownerRate}"></ion-icon>
             </p>
-
-            <!-- <p (click)="showInMap(basket)"><ion-icon name="locate"></ion-icon> {{basket.lat}}, {{basket.lng}}</p> -->
 
             <button ion-button color="success" style="font-size: 12px;font-weight: bold;" (click)="goToProductsDetails(basket)">
               {{"basket.products" | translate}}

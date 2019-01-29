@@ -21,7 +21,7 @@
 
   <ion-row *ngFor="let product of basket.products">
     <ion-col col-3 (click)="updateProduct(product)">  
-      {{product?.productLabel}}
+      {{product?.productLabelAr}} {{product?.productLabelFr}}
     </ion-col>
     <ion-col col-2 (click)="updateProduct(product)">
       {{product?.productCost}}
