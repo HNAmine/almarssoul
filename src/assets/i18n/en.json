@@ -76,7 +76,8 @@
     "invitation": {
       "old_invitation": "Old invitation",
       "phone_invited": "Guest phone",
-      "no_invitation": "there is no invitations"
+      "no_invitation": "there is no invitations",
+      "validation_code": "Validation code"
     },
     "notification": {
       "no_notification":"there is no notification"

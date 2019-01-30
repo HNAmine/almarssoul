@@ -19,7 +19,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="card-background-page">
+<ion-content class="card-background-page" style="background-color: azure;">
 
     <h4 style="text-align: center;font-weight: bold;color: orange;" *ngIf="!loading && stores.length === 0"><ion-icon name="ios-warning-outline"></ion-icon> {{"fields.no_result" | translate}}</h4>
     <ion-card *ngFor="let store of stores" (click)="goToStoreDetails(store)">

@@ -76,7 +76,8 @@
     "invitation": {
       "old_invitation": "دعوة قديمة",
       "phone_invited": "هاتف الضيف",
-      "no_invitation": "لا توجد دعوات"
+      "no_invitation": "لا توجد دعوات",
+      "validation_code": "كود التحقق"
     },
     "notification": {
       "no_notification":"لا يوجد إخطار"

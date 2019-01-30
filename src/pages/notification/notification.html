@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: azure;">
 
   <h5 style="font-weight: bold;"> <ion-icon name="md-notifications"></ion-icon> {{"modules.notification" | translate}} </h5>
 
@@ -18,7 +18,8 @@
 
   <ion-list>
     <ion-item *ngFor="let notification of notifications" [ngClass]="{'unreaded-notification' : !notification.readed}" (click)="readNotification(notification)">
-      <h2 style="color:black;font-weight: bold">{{notification.label}}</h2>
+      <h2 style="color:black;font-weight: bold">{{notification.labelAr}}</h2>
+      <h2 style="color:black;font-weight: bold">{{notification.labelFr}}</h2>
       <p>{{notification.createdAt |  date: 'MM/dd/yy hh:mm:ss' }}</p>
     </ion-item>
   </ion-list>

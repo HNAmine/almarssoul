@@ -104,7 +104,8 @@ $menu_avatar_text_color:color($colors, light);
 @import "roboto";
 @import "noto-sans";
 *{
-  font-family: 'Inconsolata', monospace;
+  // font-family: 'Inconsolata', monospace;
+  font-family: 'El Messiri', sans-serif;
 }
 .required{
   color: brown;

@@ -21,7 +21,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color: azure;">
   <div [ngSwitch]="mode">
     <ion-list *ngSwitchCase="'ADD'">
 
@@ -55,7 +55,7 @@
 
           <h2 *ngIf="invitation.state == 'ACCEPTED'" style="font-weight: bold">{{invitation?.invited?.firstName}} {{invitation?.invited?.lastName}}</h2>
           <h2 style="font-weight: bold">{{invitation.phone}}</h2>
-          <p *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'">{{invitation.validationCode}}</p>
+          <p *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'">{{ "invitation.validation_code" | translate }} <span style="color: black;font-weight: bold">{{invitation.validationCode}}</span></p>
           <p>{{invitation.createdAt |  date: 'MM/dd/yy hh:mm:ss'}}</p>
           <button (click)="whatsAppNotify(invitation)" style="font-weight: bold" *ngIf="invitation.state == 'DRAFT' || invitation.state == 'SENDED'" ion-button clear item-end>
 

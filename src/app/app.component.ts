@@ -31,8 +31,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      const langs = ["en", "fr", "ar"];
-      const defaultLang = 'en';
+      const langs = ["fr", "ar"];
+      const defaultLang = 'ar';
       this.translate.addLangs(langs);
 
       this.storage.get(langIndex).then((lang) => {

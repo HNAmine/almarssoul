@@ -55,8 +55,9 @@ export class NotificationPage {
     this.notificationService.readNotification(notification.id).subscribe(() => {
       notification.readed = true;
       loader.dismiss();
-    }, ()=> {
+    }, (err)=> {
       loader.dismiss();
+      throw err;
     });
     }
 

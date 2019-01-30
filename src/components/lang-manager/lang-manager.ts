@@ -10,8 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LangManagerComponent {
 
-  langs = [{label: "Anglais", value: "en"}, {label: "Français", value: "fr"}, {label: "العربية", value: "ar"}];
-  currentLang = "en";
+  langs = [/*{label: "Anglais", value: "en"}, */{label: "Français", value: "fr"}, {label: "العربية", value: "ar"}];
+  currentLang = "ar";
 
   constructor(public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,

@@ -1,6 +1,7 @@
 export class Notification {
     id?: number;
-    label?: string;
+    labelAr?: string;
+    labelFr?: string;
     createdAt?: Date;
     readed?: boolean;
   }
