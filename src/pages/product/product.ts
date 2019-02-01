@@ -88,8 +88,10 @@ export class ProductPage {
 
   openProductModal(product: Product){
     const p = new ProductDetails();
-    p.productLabel = product.label;
-    p.productDescription = product.description; 
+    p.productLabelAr = product.labelAr;
+    p.productLabelFr = product.labelFr;
+    p.productDescriptionAr = product.descriptionAr; 
+    p.productDescriptionFr = product.descriptionFr; 
     p.productId = product.id;
     p.productCost = product.cost;
     let profileModal = this.modalCtrl.create(ProductModal, { mode: Action.ADD, product : p, showSubmit: true });

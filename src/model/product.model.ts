@@ -2,9 +2,11 @@ import { BasketState } from "./basket.model";
 
 export class Product {
   id?: number;
-  label?: string;
+  labelAr?: string;
+  labelFr?: string;
   cost?: number;
-  description?: string;
+  descriptionAr?: string;
+  descriptionFr?: string;
   createdAt?:Date;
   expiredAt?:Date;
   canbeExpired?:boolean;
@@ -73,8 +75,10 @@ export class BasketDetails {
 
 export class ProductDetails{
   productId?: number;
-  productLabel?: string;
-  productDescription?: string;
+  productLabelAr?: string;
+  productLabelFr?: string;
+  productDescriptionAr?: string;
+  productDescriptionFr?: string;
 	categoryLabel?: string;
 	storeLabel?: string;
 	productCost?: number;

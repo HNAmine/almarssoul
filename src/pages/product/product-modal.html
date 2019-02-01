@@ -68,7 +68,6 @@
               </ion-row>
               <ion-row *ngIf="assignmentPayload.action !== 'SUBMIT'">
                         <ion-col col-2>
-                            <button (click)="currentBasket()" ion-button end style="color: white;float: right;"><ion-icon name="ios-basket"></ion-icon></button>
                         </ion-col>
                         <ion-col col-5>
                             <button (click)="action()" ion-button color="secondary" style="font-size: 12px;font-weight: bold;float: right">
@@ -93,26 +92,13 @@
                                     <ion-icon *ngIf="assignmentPayload.action == 'ADD'" name="md-add-circle" style="margin-right: 5px"></ion-icon> 
                                     <ion-icon *ngIf="assignmentPayload.action == 'UPDATE'" name="construct" style="margin-right: 5px"></ion-icon> 
                                     <ion-icon *ngIf="assignmentPayload.action == 'DELETE'" name="md-trash" style="margin-right: 5px"></ion-icon>
-                                    <!-- <ion-icon name="md-add-circle" style="margin-right: 5px"></ion-icon>  -->
-
-                                    <!-- <ng-container *ngIf="assignmentPayload.action == 'ADD'">
-                                        {{"actions.add" | translate}}
-                                    </ng-container>
-      
-                                    <ng-container *ngIf="assignmentPayload.action == 'UPDATE'">
-                                        {{"actions.edit" | translate}} 
-                                    </ng-container>
-      
-                                    <ng-container *ngIf="assignmentPayload.action == 'DELETE'">
-                                        {{"actions.delete" | translate}} 
-                                    </ng-container> -->
                                     
                                     {{"actions.and_submit" | translate}} 
                                 </button>
                         </ion-col>
               </ion-row>
 
-                </ion-card-content>
+        </ion-card-content>
         </ion-card>
 
   </ion-content>

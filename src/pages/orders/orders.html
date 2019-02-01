@@ -16,7 +16,7 @@
   <ion-card *ngFor="let basket of baskets">
     <ion-card-content>
 
-      <ion-item *ngIf="basket.deliveryFirstName">
+      <ion-item *ngIf="basket.deliveryFirstName" style="padding-left: 0px;">
         <ion-avatar item-start *ngIf="basket.deliveryAvatarUri">
           <img *ngIf="basket.deliveryAvatarUri" [src]="basket.deliveryAvatarUri" style="width: 100px;height: 100px;border-radius: 0px">
           <!-- <ion-icon *ngIf="!basket.deliveryAvatarUri" name="ios-more"></ion-icon> -->
