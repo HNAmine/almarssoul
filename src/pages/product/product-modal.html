@@ -30,7 +30,7 @@
                   <h1>{{product?.productLabelAr}} {{product?.productLabelFr}}</h1>
                   <h3 *ngIf="product.productDescriptionAr">{{product?.productDescriptionAr}}</h3>
                   <h3 *ngIf="product.productDescriptionFr">{{product?.productDescriptionFr}}</h3>
-                  <h4 style="font-weight: bold">{{product?.productCost}} x {{assignmentPayload?.quantity}} = {{product?.productCost * assignmentPayload?.quantity}}</h4>
+                  <h3 style="font-weight: bold; color: green">{{product?.productCost}} x {{assignmentPayload?.quantity}} = {{product?.productCost * assignmentPayload?.quantity}} um</h3>
                 </ion-item>
             </ion-list>
 
@@ -67,9 +67,7 @@
                   </ion-col>
               </ion-row>
               <ion-row *ngIf="assignmentPayload.action !== 'SUBMIT'">
-                        <ion-col col-2>
-                        </ion-col>
-                        <ion-col col-5>
+                        <ion-col col-12>
                             <button (click)="action()" ion-button color="secondary" style="font-size: 12px;font-weight: bold;float: right">
                                 
                               <ng-container *ngIf="assignmentPayload.action == 'ADD'">
@@ -86,7 +84,7 @@
 
                             </button>
                         </ion-col>
-                        <ion-col col-5>
+                        <ion-col col-12>
                                 <button *ngIf="showSubmit" (click)="actionAndSubmit()" ion-button color="success" style="font-size: 12px;font-weight: bold;float: right">
                                     
                                     <ion-icon *ngIf="assignmentPayload.action == 'ADD'" name="md-add-circle" style="margin-right: 5px"></ion-icon> 

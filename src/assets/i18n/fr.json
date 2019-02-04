@@ -77,7 +77,8 @@
       "old_invitation": "Ancienne invitation",
       "phone_invited": "Téléphone de l'invités",
       "no_invitation": "il n'y a pas d'invitations",
-      "validation_code": "Code de validation"
+      "validation_code": "Code de validation",
+      "well_send_invitation": "Invitation bien envoyé"
     },
     "notification": {
       "no_notification": "il n'y a pas de notification"

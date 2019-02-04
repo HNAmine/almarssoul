@@ -61,6 +61,7 @@ export class InvitationPage {
   async invite() {
 
     const pleaseWaitLabel:any = await this.translate.get('please_wait');
+    const wellSendInvitation:any = await this.translate.get('invitation.well_send_invitation');
 
     let loader = this.loadingCtrl.create({
       content: pleaseWaitLabel.value
@@ -70,7 +71,7 @@ export class InvitationPage {
         loader.dismiss();
         this.phone = null;
         const toast = this.toastCtrl.create({
-          message: 'well sent invitation',
+          message: wellSendInvitation.value,
           duration: 3000
         });
         // this.sms.send(invitation.phone, this.getMessageFromInvitation(invitation));

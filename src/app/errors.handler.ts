@@ -22,7 +22,7 @@ export class ErrorsHandler implements ErrorHandler {
 
   showAlert(content: string) {
     const alert = this.alertCtrl.create({
-      title: 'Alert !',
+      title: 'إنذار Alerte',
       subTitle: content,
       buttons: ['OK'],
       enableBackdropDismiss : true
