@@ -4,6 +4,7 @@
     "modules": {
       "home": "الصفحة الرئيسية",
       "orders": "طلباتي",
+      "categories": "الفئات",
       "basket": "سلة",
       "invite": "رسالة دعوة",
       "notification": "إعلام",

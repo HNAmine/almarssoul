@@ -4,6 +4,7 @@
     "modules": {
       "home": "Acceuil",
       "orders": "Mes orders",
+      "categories": "Catégories",
       "basket": "Paner",
       "invite": "Inviter",
       "notification": "Notification",
